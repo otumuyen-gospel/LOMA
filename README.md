@@ -1,4 +1,7 @@
 ###### LOMA(Local Market Application)
+
+/Loma.jpg
+
 Local market application LOMA is a system designed to connect buyers and sellers within the same geographical location.
 the purpose is to enable users of LOMA search for products and services nearest to them in their locality
 
