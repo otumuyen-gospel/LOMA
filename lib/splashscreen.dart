@@ -1,33 +1,27 @@
-import 'dart:async';
-
+import 'package:easy_splash_screen/easy_splash_screen.dart';
+import '../home.dart';
 import 'package:flutter/material.dart';
 
-import 'home.dart';
+class SplashPage extends StatefulWidget {
+  const SplashPage({Key? key}) : super(key: key);
 
-class Splash extends StatefulWidget {
-  const Splash({super.key});
   @override
-  State<Splash> createState() => _SplashState();
+  SplashPageState createState() => SplashPageState();
 }
 
-class _SplashState extends State<Splash> {
-  @override
-  void initState() {
-    super.initState();
-    Timer(const Duration(seconds: 3),
-            ()=>Navigator.pushReplacement(context,
-            MaterialPageRoute(builder:
-                (context) =>
-            const HomePage()
-            )
-        )
-    );
-  }
+class SplashPageState extends State<SplashPage>{
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color:Colors.white,
-      child:Image.asset("assets/splash.png"),
+    return EasySplashScreen(
+      logo: Image.asset("assets/logo-white.png"),
+      title: null,
+      showLoader: true,
+      backgroundColor: Colors.blue,
+      //backgroundImage: Image.asset("assets/cover.png").image,
+      loaderColor: Colors.white,
+      loadingText: const Text("Loading...", style: TextStyle(color: Colors.white),),
+      navigator: const HomePage(),
+      durationInSeconds: 5,
     );
   }
 }

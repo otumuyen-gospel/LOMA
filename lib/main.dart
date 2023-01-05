@@ -28,7 +28,7 @@ class Loma extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (BuildContext ctx) => const Splash(),
+        '/': (BuildContext ctx) => const SplashPage(),
         '/Home': (BuildContext ctx) => const HomePage(),
 
       },
