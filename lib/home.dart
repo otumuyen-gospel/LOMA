@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:loma/product_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -7,7 +9,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
+  responsiveView(double viewportWidth){
+    if(viewportWidth > 1100){
+      return 3;
+    }else if(viewportWidth > 800 && viewportWidth < 1100){
+      return 2;
+    }else{
+      return 1;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -39,7 +49,24 @@ class _HomePageState extends State<HomePage> {
         drawer: const Drawer(
 
         ),
-        body: null,
+        //wrap layoutbuilder in a streambuilder
+        body: LayoutBuilder(
+          builder: (context, constraint){
+            return GridView.count(
+              primary: false,
+              reverse: true,
+              padding: const EdgeInsets.all(10),
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              crossAxisCount: responsiveView(constraint.maxWidth),
+              children: [
+                for(int i =1; i<= 10; i++)
+                  ProductCard("assets/$i.jpg", "Lorem Ipsum", "Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi egestas lectus non diam interdum ullamcorper",
+                      20, "\$100", "Ipaja").create(),
+              ],
+            );
+          },
+        ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.search),
         onPressed: (){},
