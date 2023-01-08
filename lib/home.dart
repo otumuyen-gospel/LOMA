@@ -46,11 +46,91 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        drawer: const Drawer(
+        drawer:  Drawer(
+          //wrap product category listing in a stream builder widget
+          child: ListView(
+            children: <Widget>[
+              DrawerHeader(
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 150,
+                  child: Image.asset("assets/logo.png", fit: BoxFit.contain,),
+                ),
+              ),
+              ListTile(
+                leading: const Icon(Icons.photo_camera),
+                title: const Text("Photography"),
+                onTap: (){
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.emoji_food_beverage),
+                title: const Text("Food and beverages"),
+                onTap: (){
 
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.library_books),
+                title: const Text("Books"),
+                onTap: (){
+
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.snowshoeing),
+                title: const Text("Wears & Shoes"),
+                onTap: (){
+
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.computer),
+                title: const Text("Computer & Accessories"),
+                onTap: (){
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.app_shortcut),
+                title: const Text("Software Services"),
+                onTap: (){
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.draw),
+                title: const Text("Technical & painting & Artisan Services"),
+                onTap: (){
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.emoji_transportation),
+                title: const Text("Logistics"),
+                onTap: (){
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.sports),
+                title: const Text("Sports and Entertainment"),
+                onTap: (){
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.print),
+                title: const Text("Writing, Printing and Binding"),
+                onTap: (){
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.miscellaneous_services),
+                title: const Text("Other Services"),
+                onTap: (){
+                },
+              ),
+            ],
+          ),
         ),
-        //wrap layoutbuilder in a streambuilder
         body: LayoutBuilder(
+          //wrap layout builder in a stream builder widget
           builder: (context, constraint){
             return GridView.count(
               primary: false,
