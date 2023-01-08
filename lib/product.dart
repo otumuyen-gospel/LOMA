@@ -2,13 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:loma/product_card.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class Product extends StatefulWidget {
+  const Product({super.key});
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<Product> createState() => _ProductState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ProductState extends State<Product> {
   responsiveView(double viewportWidth){
     if(viewportWidth > 1100){
       return 3;
@@ -134,7 +134,6 @@ class _HomePageState extends State<HomePage> {
           builder: (context, constraint){
             return GridView.count(
               primary: false,
-              reverse: true,
               padding: const EdgeInsets.all(10),
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,

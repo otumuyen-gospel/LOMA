@@ -1,5 +1,5 @@
 import 'package:easy_splash_screen/easy_splash_screen.dart';
-import '../home.dart';
+import '../product.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatefulWidget {
@@ -20,7 +20,7 @@ class SplashPageState extends State<SplashPage>{
       //backgroundImage: Image.asset("assets/cover.png").image,
       loaderColor: Colors.white,
       loadingText: const Text("Loading...", style: TextStyle(color: Colors.white),),
-      navigator: const HomePage(),
+      navigator: const Product(),
       durationInSeconds: 5,
     );
   }
