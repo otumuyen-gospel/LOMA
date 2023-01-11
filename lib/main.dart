@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:loma/login.dart';
+import 'package:loma/product_search.dart';
 import 'package:loma/splashscreen.dart';
 import 'package:loma/product.dart';
 void main() {
@@ -30,7 +32,8 @@ class Loma extends StatelessWidget {
       routes: {
         '/': (BuildContext ctx) => const SplashPage(),
         '/Product': (BuildContext ctx) => const Product(),
-
+        '/ProductSearch': (BuildContext ctx) => const ProductSearch(),
+        '/Login': (BuildContext ctx) => const Login(),
       },
     );
 
