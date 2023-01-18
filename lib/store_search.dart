@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class ProductSearch extends StatefulWidget {
-  const ProductSearch({super.key});
+class StoreSearch extends StatefulWidget {
+  const StoreSearch({super.key});
   @override
-  State<ProductSearch> createState() => _ProductSearchState();
+  State<StoreSearch> createState() => _StoreSearchState();
 }
 
-class _ProductSearchState extends State<ProductSearch> {
+class _StoreSearchState extends State<StoreSearch> {
   final GlobalKey<FormState> _key = GlobalKey();
   String searchTerm = "";
   String errorMsg = "";
@@ -18,7 +18,7 @@ class _ProductSearchState extends State<ProductSearch> {
         backgroundColor: Colors.white,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: const Text("Product Search", style:  TextStyle(color: Colors.blue),),
+        title: const Text("Stores Search", style:  TextStyle(color: Colors.blue),),
         leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: const Icon(Icons.arrow_back, color: Colors.blue,),),
       ),
       body: Center(

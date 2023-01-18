@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class ForgotChange extends StatefulWidget {
+  const ForgotChange({super.key});
   @override
-  State<Login> createState() => _LoginState();
+  State<ForgotChange> createState() => _ForgotChangeState();
 }
 
-class _LoginState extends State<Login> {
+class _ForgotChangeState extends State<ForgotChange> {
   final GlobalKey<FormState> _key = GlobalKey();
-  String username = "";
+  String confirm = "";
   String password = "";
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class _LoginState extends State<Login> {
         backgroundColor: const Color.fromRGBO(255, 255, 255, 0.95),
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: const Text("Login", style:  TextStyle(color: Colors.blue),),
+        title: const Text("Change Password", style:  TextStyle(color: Colors.blue),),
         leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: const Icon(Icons.arrow_back, color: Colors.blue,),),
       ),
       body: Center(
@@ -39,24 +39,25 @@ class _LoginState extends State<Login> {
                   border: Border.fromBorderSide(BorderSide(color: Colors.grey,width: 1.2)),
                 ),
                 child: TextFormField(
-                  initialValue: username,
+                  initialValue: password,
+                  obscureText: true,
                   decoration: const InputDecoration(
-                    hintText: "Enter Email Address",
-                    prefixIcon: Icon(Icons.person),
+                    hintText: "Enter Password",
+                    prefixIcon: Icon(Icons.lock),
                     prefixIconColor: Colors.blue,
                     hintStyle: TextStyle(color: Colors.grey),
-                    labelText: "EMAIL",
+                    labelText: "NEW PASSWORD",
                     labelStyle: TextStyle(color: Colors.grey ,fontWeight: FontWeight.bold),
                     border: InputBorder.none,
                   ),
                   onChanged: (String val){
                     setState(() {
-                      username = val;
+                      password = val;
                     });
                   },
                   validator: (String? val){
-                    if(val == null || val.isEmpty || !RegExp("^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\\.[a-zA-Z]+").hasMatch(val)){
-                      return "Enter your email";
+                    if(val == null || val.isEmpty || val != confirm){
+                      return "Enter your password";
                     }
                     return null;
                   },
@@ -69,25 +70,25 @@ class _LoginState extends State<Login> {
                   border: Border.fromBorderSide(BorderSide(color: Colors.grey,width: 1.2)),
                 ),
                 child: TextFormField(
-                  initialValue: password,
+                  initialValue: confirm,
                   obscureText: true,
                   decoration: const InputDecoration(
-                    hintText: "Enter Password",
+                    hintText: "Enter Password again",
                     prefixIcon: Icon(Icons.lock),
                     prefixIconColor: Colors.blue,
                     hintStyle: TextStyle(color: Colors.grey),
-                    labelText: "PASSWORD",
+                    labelText: "CONFIRM PASSWORD",
                     labelStyle: TextStyle(color: Colors.grey ,fontWeight: FontWeight.bold),
                     border: InputBorder.none,
                   ),
                   onChanged: (String val){
                     setState(() {
-                      password = val;
+                      confirm = val;
                     });
                   },
                   validator: (String? val){
-                    if(val == null || val.isEmpty){
-                      return "Enter your password";
+                    if(val == null || val.isEmpty || val != password){
+                      return "Enter your password again";
                     }
                     return null;
                   },
@@ -106,16 +107,17 @@ class _LoginState extends State<Login> {
                   onPressed: (){
                     if(_key.currentState?.validate() != null){
                       _key.currentState?.save();
+                      Navigator.pushNamed(context, "/Login");
                     }
                   },
-                  child: const Text("LOGIN", style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
+                  child: const Text("CHANGE", style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextButton(onPressed: (){Navigator.pushNamed(context, "/Signup");}, child: const Text("Create Account",style: TextStyle(color: Colors.blue),)),
-                  TextButton(onPressed: (){Navigator.pushNamed(context, "/Forgot");}, child: const Text("Forgot Password?",style: TextStyle(color: Colors.blue),)),
+                  TextButton(onPressed: (){Navigator.pushNamed(context, "/Login");}, child: const Text("Login Instead?",style: TextStyle(color: Colors.blue),)),
                 ],
               ),
             ],

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Signup extends StatefulWidget {
+  const Signup({super.key});
   @override
-  State<Login> createState() => _LoginState();
+  State<Signup> createState() => _SignupState();
 }
 
-class _LoginState extends State<Login> {
+class _SignupState extends State<Signup> {
   final GlobalKey<FormState> _key = GlobalKey();
   String username = "";
   String password = "";
@@ -17,7 +17,7 @@ class _LoginState extends State<Login> {
         backgroundColor: const Color.fromRGBO(255, 255, 255, 0.95),
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: const Text("Login", style:  TextStyle(color: Colors.blue),),
+        title: const Text("Create Account", style:  TextStyle(color: Colors.blue),),
         leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: const Icon(Icons.arrow_back, color: Colors.blue,),),
       ),
       body: Center(
@@ -108,13 +108,13 @@ class _LoginState extends State<Login> {
                       _key.currentState?.save();
                     }
                   },
-                  child: const Text("LOGIN", style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
+                  child: const Text("CREATE", style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  TextButton(onPressed: (){Navigator.pushNamed(context, "/Signup");}, child: const Text("Create Account",style: TextStyle(color: Colors.blue),)),
+                  TextButton(onPressed: (){Navigator.pushNamed(context, "/Login");}, child: const Text("Login Instead?",style: TextStyle(color: Colors.blue),)),
                   TextButton(onPressed: (){Navigator.pushNamed(context, "/Forgot");}, child: const Text("Forgot Password?",style: TextStyle(color: Colors.blue),)),
                 ],
               ),

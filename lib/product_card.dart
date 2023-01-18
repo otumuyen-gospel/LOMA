@@ -10,52 +10,60 @@ class ProductCard{
   late String price;
   late String location;
   late Image img;
-  ProductCard(this.imageUrl, this.name, this.description, this.likes, this.price, this.location){
+  BuildContext context;
+  ProductCard(this.imageUrl, this.name, this.description, this.likes, this.price, this.location, this.context){
     if(imageUrl.startsWith("http")){
       //network file
-      img = Image.network(imageUrl,fit: BoxFit.contain);
+      img = Image.network(imageUrl, height: 150,
+        width: 300,);
     }else if(imageUrl.startsWith("file")){
       //from system file
-      img = Image.file(File(imageUrl), fit: BoxFit.contain);
+      img = Image.file(File(imageUrl), height: 150,
+        width: 300,);
     }else{
       //from app
-      img = Image.asset(imageUrl, fit: BoxFit.contain);
+      img = Image.asset(imageUrl, height: 150,
+        width: 300,);
     }
   }
   create(){
-      return Container(
-        alignment: Alignment.topLeft,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(40),),
-        child: Card(
-          elevation: 5,
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Container(
-                  alignment: Alignment.center,
-                  height: 190,
-                  child: img,
-                ),
-                Text(name,style: const TextStyle(fontFamily: "verdana", fontSize: 20,fontWeight: FontWeight.bold,
-                overflow: TextOverflow.ellipsis, color: Colors.blue)),
-                Text(description,style: const TextStyle(fontFamily: "verdana", color: Colors.grey)),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton.icon(onPressed: (){}, icon: const Icon(Icons.thumb_down,color:Colors.white),
-                        label:Text("$likes")),
-                    ElevatedButton.icon(onPressed: (){}, icon: const Icon(Icons.shopping_cart,color:Colors.white),
-                        label:const Text("Order")),
-                    Text(price,style: const TextStyle(fontFamily: "verdana", color: Colors.blue)),
-                    Text(location,style: const TextStyle(fontFamily: "verdana", color: Colors.blue,
-                    overflow: TextOverflow.ellipsis)),
-                  ],
-                ),
-              ],
-            ),
+      return InkWell(
+        onTap: (){Navigator.pushNamed(context, "/Order");},//take user to order page
+        child: Container(
+          alignment: Alignment.topLeft,
+          constraints: const BoxConstraints.expand(),
+          padding: const EdgeInsets.only(top:10, bottom: 10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: Colors.grey, width: 1),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              img,
+              Padding(padding: const EdgeInsets.only(left: 10,right: 10), child:Text(name,style: const TextStyle(fontFamily: "verdana", fontSize: 20,fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis, color: Colors.blue)),),
+              Padding(padding: const EdgeInsets.only(left: 10,right: 10), child:Text(description,style: const TextStyle(fontFamily: "verdana", color: Colors.grey)),),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  ElevatedButton.icon(
+                    onPressed: (){},
+                    icon: const Icon(Icons.thumb_up_sharp,color:Colors.blue),
+                    label:Text("$likes", style: const TextStyle(color: Colors.blue),),
+                    style: ButtonStyle(
+                      backgroundColor:MaterialStateProperty.all(const Color.fromRGBO(255, 255, 255, 1),),
+                      foregroundColor: MaterialStateProperty.all(const Color.fromRGBO(255, 255, 255, 1),),
+                    ),
+                  ),
+                  Padding(padding: const EdgeInsets.only(left:10, right: 10), child:
+                  Text(price,style: const TextStyle(fontFamily: "verdana", color: Colors.blue)),),
+                  Padding(padding: const EdgeInsets.only(left:10, right: 10), child:
+                  Text(location,style: const TextStyle(fontFamily: "verdana", color: Colors.blue,
+                      overflow: TextOverflow.ellipsis)),),
+                ],
+              ),
+            ],
           ),
         ),
       );

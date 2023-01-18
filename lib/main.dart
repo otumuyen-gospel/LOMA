@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:loma/forgot_email.dart';
+import 'package:loma/forgot_newpassword.dart';
+import 'package:loma/forgot_verify.dart';
 import 'package:loma/login.dart';
+import 'package:loma/order.dart';
 import 'package:loma/product_search.dart';
+import 'package:loma/sign_up.dart';
 import 'package:loma/splashscreen.dart';
 import 'package:loma/product.dart';
+import 'package:loma/store_search.dart';
+import 'package:loma/stores.dart';
 void main() {
   runApp(const Loma());
 }
@@ -33,7 +40,14 @@ class Loma extends StatelessWidget {
         '/': (BuildContext ctx) => const SplashPage(),
         '/Product': (BuildContext ctx) => const Product(),
         '/ProductSearch': (BuildContext ctx) => const ProductSearch(),
+        '/StoreSearch': (BuildContext ctx) => const StoreSearch(),
         '/Login': (BuildContext ctx) => const Login(),
+        '/Forgot': (BuildContext ctx) => const ForgotEmail(),
+        '/Signup': (BuildContext ctx) => const Signup(),
+        '/Stores': (BuildContext ctx) => const Stores(),
+        '/ForgotChange': (BuildContext ctx) => const ForgotChange(),
+        '/ForgotVerify': (BuildContext ctx) => const ForgotVerify(),
+        '/Order': (BuildContext ctx) => const Order(),
       },
     );
 

@@ -1,37 +1,30 @@
 
 import 'package:flutter/material.dart';
-import 'package:loma/product_card.dart';
+import 'package:loma/product_action.dart';
+import 'package:loma/product_order.dart';
 
-class Product extends StatefulWidget {
-  const Product({super.key});
+class Order extends StatefulWidget {
+  const Order({super.key});
   @override
-  State<Product> createState() => _ProductState();
+  State<Order> createState() => _OrderState();
 }
 
-class _ProductState extends State<Product> {
-  responsiveView(double viewportWidth){
-    if(viewportWidth > 900){
-      return 3;
-    }else if(viewportWidth > 600){
-      return 2;
-    }else{
-      return 1;
-    }
-  }
+class _OrderState extends State<Order> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar(
-           backgroundColor: Colors.white,
+    return  SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           title: const Text("LOMA", style: TextStyle(color: Colors.blue,fontFamily: 'verdana'),),
           leading: Builder(builder: (context){
             return IconButton(
-                onPressed: (){
-                  Scaffold.of(context).openDrawer();
-                },
-                icon: const Icon(Icons.menu, color: Colors.blue,),
+              onPressed: (){
+                Scaffold.of(context).openDrawer();
+              },
+              icon: const Icon(Icons.menu, color: Colors.blue,),
             );
           }),
           actions: [
@@ -40,13 +33,13 @@ class _ProductState extends State<Product> {
                 icon: const Icon(Icons.search,color: Colors.blue,
                 )),
             TextButton(
-                onPressed: (){Navigator.pushNamed(context, "/Stores");},
-                child: const Text("Stores", style: TextStyle(color: Colors.blue,fontFamily: 'verdana'),),
+              onPressed: (){Navigator.pushNamed(context, "/Product");},
+              child: const Text("Products", style: TextStyle(color: Colors.blue,fontFamily: 'verdana'),),
             ),
             OutlinedButton(
-                onPressed:  (){Navigator.pushNamed(context, "/Login");},
-                style:  ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue),),
-                child: const Text("Account", style: TextStyle(color:Colors.white,fontFamily: 'verdana'),),
+              onPressed:  (){Navigator.pushNamed(context, "/Login");},
+              style:  ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue),),
+              child: const Text("Account", style: TextStyle(color:Colors.white,fontFamily: 'verdana'),),
             ),
           ],
         ),
@@ -133,24 +126,16 @@ class _ProductState extends State<Product> {
             ],
           ),
         ),
-        body: LayoutBuilder(
-          //wrap layout builder in a stream builder widget
-          builder: (context, constraint){
-            return GridView.count(
-              primary: false,
-              padding: const EdgeInsets.all(10),
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              crossAxisCount: responsiveView(constraint.maxWidth),
-              children: [
-                for(int i =1; i<= 10; i++)
-                  ProductCard("assets/$i.jpg", "Lorem Ipsum", "Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi egestas lectus non diam interdum ullamcorper",
-                      20, "\$100", "Ipaja", context).create(),
-              ],
-            );
-          },
+        body: ListView(
+          children: [
+            //product order view
+            ProductOrder("assets/1.jpg", "Lorem Ipsum", "Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi egestas lectus non diam interdum ullamcorper",
+                 "\$100", "Ipaja", context).view(),
+            ProductActions().view(),
+          ],
         ),
 
+      ),
     );
   }
 }
