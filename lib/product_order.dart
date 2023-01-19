@@ -20,26 +20,57 @@ class ProductOrder{
     }
     return img;
   }
-  responsiveView(double viewportWidth){
-    if(viewportWidth > 900){
-      return 2;
+  responsiveViewWidth(double viewportWidth){
+    if(viewportWidth > 700){
+      return 0.5;
     }else{
-      return 1;
+      return 1.0;
+    }
+  }
+  responsiveViewHeight(double viewportWidth){
+    if(viewportWidth > 700){
+      return 0.9;
+    }else{
+      return 0.5;
+    }
+  }
+  responsiveText(double viewportWidth){
+    if(viewportWidth > 700){
+      return 40.0;
+    }else{
+      return 28.0;
     }
   }
   view(){
     return LayoutBuilder(
-      //wrap layout builder in a stream builder widget
       builder: (context, constraint){
         return Wrap(
           direction: Axis.horizontal,
           clipBehavior: Clip.none,
-          spacing: 40,
           children: [
             Container(
+              alignment: Alignment.center,
+              width: MediaQuery.of(context).size.width * responsiveViewWidth(constraint.maxWidth),
+              height: MediaQuery.of(context).size.height * responsiveViewHeight(constraint.maxWidth),
+              decoration: const BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                    Text(location,style: TextStyle(color: Colors.cyanAccent,
+                        fontSize: responsiveText(constraint.maxWidth),letterSpacing: 10, fontStyle: FontStyle.italic)),
+                  Text(name,style: TextStyle(color: Colors.pink, fontSize: responsiveText(constraint.maxWidth),
+                      letterSpacing: 10)),
+                  Text(description,style: const TextStyle(color: Colors.white, fontSize: 15)),
+                ],
+              ),
+            ),
+            Container(
               alignment: Alignment.topLeft,
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width * responsiveViewWidth(constraint.maxWidth),
+              height: MediaQuery.of(context).size.height * 0.9,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: img(imageUrl).image,
@@ -47,19 +78,11 @@ class ProductOrder{
                 ),
               ),
               child: Container(
-                color: Colors.white,
-                padding: const EdgeInsets.only(right: 10),
-                child:Text(price,style: Theme.of(context).textTheme.headline4),
+                color: Colors.grey,
+                padding: const EdgeInsets.all(10),
+                child:Text(price,style: const TextStyle(color: Colors.white, fontSize: 20,
+                    letterSpacing: 3, fontStyle: FontStyle.italic)),
               ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Padding(padding: const EdgeInsets.all(20),child:Text(location,style: Theme.of(context).textTheme.headline4),),
-                Padding(padding: const EdgeInsets.all(20),child:Text(name,style: Theme.of(context).textTheme.headline3),),
-                Padding(padding: const EdgeInsets.all(20),child:Text(description,style: Theme.of(context).textTheme.bodyLarge),),
-
-              ],
             ),
           ],
         );
