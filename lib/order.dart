@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:loma/product_action.dart';
+import 'package:loma/product_more.dart';
 import 'package:loma/product_order.dart';
+import 'package:loma/product_similar.dart';
 
 class Order extends StatefulWidget {
   const Order({super.key});
@@ -129,9 +131,15 @@ class _OrderState extends State<Order> {
         body: ListView(
           children: [
             //product order view
-            ProductOrder("assets/1.jpg", "Lorem Ipsum", "Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi egestas lectus non diam interdum ullamcorper",
-                 "\$100", "Ipaja", context).view(),
+            ProductOrder(context).view(),
+            //product actions
             ProductActions().view(),
+            //more product
+            Padding(padding:const EdgeInsets.only(top: 3, bottom: 5, left: 5),child:Text("This Store", style: Theme.of(context).textTheme.headline5,),),
+            ProductMore().show(),
+            //Similar product
+            Padding(padding:const EdgeInsets.only(top: 3, bottom: 5,left: 5),child:Text("Similar Product", style: Theme.of(context).textTheme.headline5,),),
+            ProductSimilar(context).show(),
           ],
         ),
 

@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 class ProductActions{
   view(){
@@ -8,7 +7,6 @@ class ProductActions{
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.all(40),
         clipBehavior: Clip.none,
-        dragStartBehavior: DragStartBehavior.start,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

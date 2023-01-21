@@ -5,7 +5,7 @@ class ProductOrder{
   late String price;
   late String location;
   BuildContext context;
-  ProductOrder(this.imageUrl,this.name,this.description, this.price, this.location, this.context);
+  ProductOrder(this.context);
   img(imageUrl){
     Image img;
     if(imageUrl.startsWith("http")){
@@ -20,21 +20,26 @@ class ProductOrder{
     }
     return img;
   }
-  responsiveViewWidth(double viewportWidth){
-    if(viewportWidth > 700){
-      return 0.5;
+  responsiveViewWidth(double margin) {
+    double width = 0;
+    double viewportWidth = MediaQuery.of(context).size.width;
+    if (viewportWidth > 700) {
+      width = (viewportWidth / 2) - margin;
     }else{
-      return 1.0;
+      width = viewportWidth;
+    }
+    return width;
+  }
+  responsiveMargin(margin){
+    double viewportWidth = MediaQuery.of(context).size.width;
+    if(viewportWidth > 700){
+      return margin / 2;
+    }else{
+      return 0.0;
     }
   }
-  responsiveViewHeight(double viewportWidth){
-    if(viewportWidth > 700){
-      return 0.9;
-    }else{
-      return 0.5;
-    }
-  }
-  responsiveText(double viewportWidth){
+  responsiveText(){
+    double viewportWidth = MediaQuery.of(context).size.width;
     if(viewportWidth > 700){
       return 40.0;
     }else{
@@ -42,51 +47,43 @@ class ProductOrder{
     }
   }
   view(){
-    return LayoutBuilder(
-      builder: (context, constraint){
-        return Wrap(
-          direction: Axis.horizontal,
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-              alignment: Alignment.center,
-              width: MediaQuery.of(context).size.width * responsiveViewWidth(constraint.maxWidth),
-              height: MediaQuery.of(context).size.height * responsiveViewHeight(constraint.maxWidth),
-              decoration: const BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                    Text(location,style: TextStyle(color: Colors.cyanAccent,
-                        fontSize: responsiveText(constraint.maxWidth),letterSpacing: 10, fontStyle: FontStyle.italic)),
-                  Text(name,style: TextStyle(color: Colors.pink, fontSize: responsiveText(constraint.maxWidth),
-                      letterSpacing: 10)),
-                  Text(description,style: const TextStyle(color: Colors.white, fontSize: 15)),
-                ],
-              ),
+    imageUrl = "assets/1.jpg"; name= "Lorem Ipsum";
+    description= "Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi egestas lectus non diam interdum ullamcorper";
+    price ="\$100";
+    location ="Ipaja";
+    double margin = 0;
+    return Wrap(
+      children: [
+        Container(
+          alignment: Alignment.topLeft,
+          width: responsiveViewWidth(margin),
+          height: responsiveViewWidth(margin),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: img(imageUrl).image,
+              fit: BoxFit.cover,
             ),
-            Container(
-              alignment: Alignment.topLeft,
-              width: MediaQuery.of(context).size.width * responsiveViewWidth(constraint.maxWidth),
-              height: MediaQuery.of(context).size.height * 0.9,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: img(imageUrl).image,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Container(
-                color: Colors.grey,
-                padding: const EdgeInsets.all(10),
-                child:Text(price,style: const TextStyle(color: Colors.white, fontSize: 20,
-                    letterSpacing: 3, fontStyle: FontStyle.italic)),
-              ),
-            ),
-          ],
-        );
-      },
+          ),
+        ),
+        Container(
+          alignment: Alignment.center,
+          color: const Color.fromRGBO(0, 0, 255, 0.1),
+          width: responsiveViewWidth(margin),
+          height: responsiveViewWidth(margin),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(padding:const EdgeInsets.all(10),child:Text(price,style: const TextStyle(color: Colors.black, fontSize: 20,
+                  letterSpacing: 3, fontWeight: FontWeight.bold),),),
+              Padding(padding:const EdgeInsets.all(10), child:Text(location,style: TextStyle(color: Colors.blueGrey,
+                  fontSize: responsiveText(),letterSpacing: 3, fontStyle: FontStyle.italic)),),
+              Padding(padding:const EdgeInsets.all(10), child:Text(name,style: TextStyle(color: Colors.blue, fontSize: responsiveText(),
+                  letterSpacing: 3)),),
+              Padding(padding:const EdgeInsets.all(10), child:Text(description,style: const TextStyle(fontSize: 15)),),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
