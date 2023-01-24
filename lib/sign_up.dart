@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:regexed_validator/regexed_validator.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -86,8 +87,8 @@ class _SignupState extends State<Signup> {
                     });
                   },
                   validator: (String? val){
-                    if(val == null || val.isEmpty){
-                      return "Enter your password";
+                    if(val == null || !validator.password(val)){
+                      return "uppercase,lowercase,numbers,symbols";
                     }
                     return null;
                   },

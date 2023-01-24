@@ -19,7 +19,7 @@ class ProductMore{
               ),
             ),
             Padding(padding: const EdgeInsets.all(5), child:Text(name, style: const TextStyle(fontSize: 20, color: Colors.blue),),),
-            Padding(padding: const EdgeInsets.all(5), child:Text(description, style:const TextStyle(color: Colors.grey),),),
+            Padding(padding: const EdgeInsets.all(5), child:Text(description, style:const TextStyle(color: Colors.blueGrey),),),
           ],
         ),
       ),

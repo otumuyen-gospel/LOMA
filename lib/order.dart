@@ -133,7 +133,7 @@ class _OrderState extends State<Order> {
             //product order view
             ProductOrder(context).view(),
             //product actions
-            ProductActions().view(),
+            ProductActions().view(context),
             //more product
             Padding(padding:const EdgeInsets.only(top: 3, bottom: 5, left: 5),child:Text("This Store", style: Theme.of(context).textTheme.headline5,),),
             ProductMore().show(),

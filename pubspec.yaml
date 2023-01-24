@@ -39,6 +39,7 @@ dependencies:
   easy_splash_screen: ^1.0.4
   url_launcher: ^6.1.7
   carousel_slider: ^4.2.1
+  regexed_validator: ^2.0.0
 
 dev_dependencies:
   flutter_test:

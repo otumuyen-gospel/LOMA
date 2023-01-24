@@ -73,13 +73,20 @@ class ProductOrder{
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Padding(padding:const EdgeInsets.all(10),child:Text(price,style: const TextStyle(color: Colors.black, fontSize: 20,
-                  letterSpacing: 3, fontWeight: FontWeight.bold),),),
               Padding(padding:const EdgeInsets.all(10), child:Text(location,style: TextStyle(color: Colors.blueGrey,
                   fontSize: responsiveText(),letterSpacing: 3, fontStyle: FontStyle.italic)),),
               Padding(padding:const EdgeInsets.all(10), child:Text(name,style: TextStyle(color: Colors.blue, fontSize: responsiveText(),
                   letterSpacing: 3)),),
               Padding(padding:const EdgeInsets.all(10), child:Text(description,style: const TextStyle(fontSize: 15)),),
+              Container(
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(padding:const EdgeInsets.all(10),child:Text(price,style: const TextStyle(color: Colors.white, fontSize: 20,
+                    letterSpacing: 3, fontWeight: FontWeight.bold),),),
+              ),
             ],
           ),
         ),

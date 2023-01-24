@@ -43,7 +43,7 @@ class ProductSimilar{
                 ),
               ),
               Padding(padding: const EdgeInsets.all(5),
-                child:Text(description, style:const TextStyle(color: Colors.grey),),),
+                child:Text(description, style:const TextStyle(color: Colors.blueGrey),),),
             ],
           ),
         ),

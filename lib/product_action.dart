@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 class ProductActions{
-  view(){
+  view(BuildContext context){
     return Container(
       alignment: Alignment.center,
       child: SingleChildScrollView(
@@ -25,7 +25,7 @@ class ProductActions{
             Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: ElevatedButton.icon(
-                  onPressed: (){},
+                  onPressed: (){Navigator.pushNamed(context, "/OrderForm");},
                   icon: const Icon(Icons.shopping_cart,color:Colors.white),
                   label:const Text("Order", style: TextStyle(color: Colors.white),),
                 ),
@@ -34,7 +34,7 @@ class ProductActions{
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: ElevatedButton.icon(
                 onPressed: (){},
-                icon: const Icon(Icons.phone_callback,color:Colors.blue),
+                icon: const Icon(Icons.phone,color:Colors.blue),
                 label:const Text("Call", style: TextStyle(color: Colors.blue),),
                 style: ButtonStyle(
                   backgroundColor:MaterialStateProperty.all(const Color.fromRGBO(255, 255, 255, 1),),
@@ -57,7 +57,7 @@ class ProductActions{
             Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: ElevatedButton.icon(
-                onPressed: (){},
+                onPressed: (){Navigator.pushNamed(context, "/Privacy");},
                 icon: const Icon(Icons.privacy_tip,color:Colors.blue),
                 label:const Text("Term & Conditions", style: TextStyle(color: Colors.blue),),
                 style: ButtonStyle(
