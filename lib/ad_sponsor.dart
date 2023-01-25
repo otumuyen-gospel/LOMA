@@ -4,45 +4,45 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ProductSlider{
+class SponsoredAds{
+  BuildContext context;
+  SponsoredAds(this.context);
   late Image img;
   add(String url, String imageUrl){
     if(imageUrl.startsWith("http")){
       //network file
-      img = Image.network(imageUrl,fit: BoxFit.cover);
+      img = Image.network(imageUrl);
     }else if(imageUrl.startsWith("file")){
       //from system file
-      img = Image.file(File(imageUrl),fit: BoxFit.cover);
+      img = Image.file(File(imageUrl));
     }else{
       //from app
-      img = Image.asset(imageUrl,fit: BoxFit.cover);
+      img = Image.asset(imageUrl);
     }
     return InkWell(
       child:Container(
-        margin: const EdgeInsets.all(8.0),
-        height: 300,
-        width: 300,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height*0.2,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
+          color: Colors.transparent,
           image: DecorationImage(
             image: img.image,
+            fit: BoxFit.contain,
           ),
         ),
       ),
-      onTap: ()=>launchUrl(url),
+      onTap: (){launchUrl(url);}
     );
   }
   getChildren(){
     return //top ads banner wrap slider in StreamBuilder
       CarouselSlider(
         items: [
-          ProductSlider().add("https://www.github.com", "assets/1.png"),
-          ProductSlider().add("https://www.github.com", "assets/2.png"),
-          ProductSlider().add("https://www.github.com", "assets/3.png"),
-          ProductSlider().add("https://www.github.com", "assets/cover.png"),
+          SponsoredAds(context).add("https://www.github.com", "assets/1.png"),
+          SponsoredAds(context).add("https://www.github.com", "assets/3.png"),
         ],
         options: CarouselOptions(
-          height: 200,
+          height: MediaQuery.of(context).size.height*0.2,
           enlargeCenterPage: true,
           autoPlay: true,
           aspectRatio: 16 / 9,

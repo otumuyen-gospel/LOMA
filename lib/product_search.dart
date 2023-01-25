@@ -10,6 +10,14 @@ class _ProductSearchState extends State<ProductSearch> {
   final GlobalKey<FormState> _key = GlobalKey();
   String searchTerm = "";
   String errorMsg = "";
+  responsiveViewWidth(){
+    double viewportWidth = MediaQuery.of(context).size.width;
+    if(viewportWidth > 700){
+      return viewportWidth * 0.4;
+    }else{
+      return viewportWidth * 0.7;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,7 +41,9 @@ class _ProductSearchState extends State<ProductSearch> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        width: 220,
+                        height: 60,
+                        padding: const EdgeInsets.only(left: 5, right: 5),
+                        width: responsiveViewWidth(),
                         decoration: const BoxDecoration(
                           border: Border.fromBorderSide(BorderSide(color: Colors.blue,width: 1.2)),
                           borderRadius: BorderRadius.only(topLeft: Radius.circular(10),
@@ -64,7 +74,8 @@ class _ProductSearchState extends State<ProductSearch> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.all(5),
+                        height: 60,
+                        padding: const EdgeInsets.only(left: 5, right: 5),
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.blue),
                           color: Colors.blue,

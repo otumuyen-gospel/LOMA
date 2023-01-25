@@ -1,69 +1,77 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 class StoreCard{
-  late String imageUrl;
+  late String url;
   late String name;
   late String description;
   late List<String>keyword;
   late String location;
   late Image img;
   BuildContext context;
-  StoreCard(this.imageUrl, this.name, this.description, this.keyword, this.location, this.context){
-
-    if(imageUrl.startsWith("http")){
-      //network file
-      img = Image.network(imageUrl);
-    }else if(imageUrl.startsWith("file")){
-      //from system file
-      img = Image.file(File(imageUrl));
+  StoreCard(this.url, this.name, this.description, this.keyword, this.location, this.context);
+  responsiveViewWidth(double margin) {
+    double width = 0;
+    double viewportWidth = MediaQuery.of(context).size.width;
+    if (viewportWidth > 1000) {
+      width = (viewportWidth / 3) - margin;
+    } else if(viewportWidth > 500){
+      width = (viewportWidth / 2) - margin;
     }else{
-      //from app
-      img = Image.asset(imageUrl);
+      width = viewportWidth;
+    }
+    return width;
+  }
+  responsiveMargin(margin){
+    double viewportWidth = MediaQuery.of(context).size.width;
+    if(viewportWidth > 500){
+      return margin / 2;
+    }else{
+      return 0.0;
     }
   }
-  create(){
+  card(){
+    double margin = 20;
     return InkWell(
-      onTap: (){Navigator.pushNamed(context, "/Product");},
+      onTap: (){Navigator.pushNamed(context, "/Product");},//take user to order page
       child: Container(
+        width: responsiveViewWidth(margin),
+        margin: EdgeInsets.only(left: responsiveMargin(margin),right: responsiveMargin(margin),bottom: 10),
         alignment: Alignment.topLeft,
-        constraints: const BoxConstraints.expand(),
+        padding: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          image:  DecorationImage(
-            image: img.image,
-            fit: BoxFit.cover,
-          ),
+          border: Border.all(color: Colors.grey, width: 0.5),
         ),
-        child:Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: const Color.fromRGBO(0, 0, 150, 0.4),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(name,style: const TextStyle(fontFamily: "verdana", fontSize: 24,fontWeight: FontWeight.bold,
-                  overflow: TextOverflow.ellipsis, color: Colors.white)),
-              Text(description,style: const TextStyle(fontFamily: "verdana", color: Colors.white,
-                fontWeight: FontWeight.bold,)),
-              Text("Location : $location",style: const TextStyle(fontFamily: "verdana", color: Colors.redAccent,
-                fontSize: 20,fontWeight: FontWeight.bold,),),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  for(String tags in keyword)
-                    Chip(label: Text(tags,style: const TextStyle(color: Colors.white),), backgroundColor: Colors.blue,),
-                ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Container(
+              height: responsiveViewWidth(margin),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+                image: DecorationImage(
+                  image: Image.asset(url,).image,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ],
-          ),
-        ) ,
+            ),
+            Padding(padding: const EdgeInsets.all(10), child:Text(name,style: const TextStyle(fontFamily: "verdana", fontSize: 20,fontWeight: FontWeight.bold,
+                overflow: TextOverflow.ellipsis, color: Colors.blue)),),
+            Padding(padding: const EdgeInsets.all(10), child:Text(description,style: const TextStyle(fontFamily: "verdana", color: Colors.grey)),),
+
+            Padding(padding: const EdgeInsets.only(left: 10,right: 10, top: 10, bottom: 20), child:Text("Location : $location",style: const TextStyle(fontFamily: "verdana", color: Colors.redAccent,
+              fontSize: 20,fontWeight: FontWeight.bold,),),),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                for(String tags in keyword)
+                  Chip(label: Text(tags,style: const TextStyle(color: Colors.white),), backgroundColor: Colors.blue,),
+              ],
+            ),
+          ],
+        ),
       ),
     );
-
   }
+
 }

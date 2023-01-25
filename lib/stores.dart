@@ -1,6 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:loma/ad_sponsor.dart';
 import 'package:loma/store_card.dart';
+
+import 'ad_mobile.dart';
 
 class Stores extends StatefulWidget {
   const Stores({super.key});
@@ -134,7 +137,32 @@ class _StoresState extends State<Stores> {
               ],
             ),
           ),
-          body: LayoutBuilder(
+          body:ListView(
+            padding: const EdgeInsets.only(bottom: 150),
+            children: [
+              AdGoogleMobileSpace(context).create(),
+              Wrap(
+                clipBehavior: Clip.none,
+                direction: Axis.horizontal,
+                children: [
+                  for(int i =1; i<= 10; i++)
+                    StoreCard("assets/$i.jpg", "Lorem Ipsum", "Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi egestas lectus non diam interdum ullamcorper",
+                        ["eggs","palte","clothes"], "Ipaja",context).card(),
+                ],
+              ),
+            ],
+          ),
+
+          bottomSheet: BottomSheet(
+            backgroundColor: Colors.white,
+            clipBehavior: Clip.none,
+            elevation: 5,
+            enableDrag: false,
+            onClosing: () {  },
+            builder: (BuildContext context) {
+              return SponsoredAds(context).getChildren();
+            },
+          ), /*LayoutBuilder(
             //wrap layout builder in a stream builder widget
             builder: (context, constraint){
               return GridView.count(
@@ -151,7 +179,7 @@ class _StoresState extends State<Stores> {
                 ],
               );
             },
-          ),
+          ),*/
 
         ),
     );

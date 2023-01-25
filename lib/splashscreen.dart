@@ -1,4 +1,5 @@
 import 'package:easy_splash_screen/easy_splash_screen.dart';
+import 'package:loma/product.dart';
 import '../product.dart';
 import 'package:flutter/material.dart';
 
