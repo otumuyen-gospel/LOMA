@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loma/dashboard/dashboard.dart';
 import 'package:loma/forgot_email.dart';
 import 'package:loma/forgot_newpassword.dart';
 import 'package:loma/forgot_verify.dart';
@@ -53,6 +54,7 @@ class Loma extends StatelessWidget {
         '/Order': (BuildContext ctx) => const Order(),
         '/OrderForm': (BuildContext ctx) => const OrderForm(),
         '/Privacy': (BuildContext ctx) => const Privacy(),
+        "/Dashboard": (BuildContext ctx) => const Dashboard(),
       },
     );
 

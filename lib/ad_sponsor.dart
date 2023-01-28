@@ -31,7 +31,7 @@ class SponsoredAds{
           ),
         ),
       ),
-      onTap: (){launchUrl(url);}
+      onTap: (){launch(url);}
     );
   }
   getChildren(){
@@ -53,9 +53,10 @@ class SponsoredAds{
         ),
       );
   }
-  launchUrl(String url) async {
-    if(await canLaunchUrl(Uri.parse(url))){
-      await launchUrl(url);
+  launch(String url) async {
+    Uri uri = Uri.parse(Uri.encodeFull(url));
+    if(await canLaunchUrl(uri)){
+      await launchUrl(uri);
     }else{
       throw "could not launch this ad";
     }

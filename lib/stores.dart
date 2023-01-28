@@ -162,24 +162,7 @@ class _StoresState extends State<Stores> {
             builder: (BuildContext context) {
               return SponsoredAds(context).getChildren();
             },
-          ), /*LayoutBuilder(
-            //wrap layout builder in a stream builder widget
-            builder: (context, constraint){
-              return GridView.count(
-                primary: false,
-                padding: const EdgeInsets.all(10),
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                childAspectRatio: 100/100,
-                crossAxisCount: responsiveView(constraint.maxWidth),
-                children: [
-                  for(int i =1; i<= 10; i++)
-                    StoreCard("assets/$i.jpg", "Lorem Ipsum", "Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi egestas lectus non diam interdum ullamcorper",
-                        ["eggs","palte","clothes"], "Ipaja",context).create(),
-                ],
-              );
-            },
-          ),*/
+          ),
 
         ),
     );

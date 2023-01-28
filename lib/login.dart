@@ -111,6 +111,7 @@ class _LoginState extends State<Login> {
                           onPressed: (){
                             if(_key.currentState?.validate() != null){
                               _key.currentState?.save();
+                              Navigator.pushNamed(context, "/Dashboard");
                             }
                           },
                           child: const Text("LOGIN", style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),

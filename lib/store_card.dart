@@ -8,6 +8,7 @@ class StoreCard{
   late String location;
   late Image img;
   BuildContext context;
+  double margin = 20;
   StoreCard(this.url, this.name, this.description, this.keyword, this.location, this.context);
   responsiveViewWidth(double margin) {
     double width = 0;
@@ -21,26 +22,17 @@ class StoreCard{
     }
     return width;
   }
-  responsiveMargin(margin){
-    double viewportWidth = MediaQuery.of(context).size.width;
-    if(viewportWidth > 500){
-      return margin / 2;
-    }else{
-      return 0.0;
-    }
-  }
   card(){
-    double margin = 20;
     return InkWell(
       onTap: (){Navigator.pushNamed(context, "/Product");},//take user to order page
       child: Container(
         width: responsiveViewWidth(margin),
-        margin: EdgeInsets.only(left: responsiveMargin(margin),right: responsiveMargin(margin),bottom: 10),
+        margin: EdgeInsets.only(left: (margin/2),right: (margin/2),bottom: 20),
         alignment: Alignment.topLeft,
         padding: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: Colors.grey, width: 0.5),
+          border: Border.all(color: Colors.grey, width: 1),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
