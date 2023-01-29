@@ -36,53 +36,23 @@ class _DashboardState extends State<Dashboard> {
             );
           }),
           actions: [
-            IconButton(
+            ElevatedButton.icon(
                 onPressed: (){},
-                icon: const Icon(Icons.search,color: Colors.blue,
-                )),
-            TextButton(
-              onPressed: (){},
-              child: const Text("Store", style: TextStyle(color: Colors.blue,fontFamily: 'verdana'),),
-            ),
-
-            Container(
-              color: Colors.transparent,
-              alignment: Alignment.center,
-              child: DropdownButtonHideUnderline(
-                child: DropdownButton(
-                  icon: const Icon(Icons.home, color: Colors.blue,),
-                  alignment: Alignment.center,
-                  items: const [
-                    DropdownMenuItem(
-                      value: "A",
-                      child: Text("Account"),
-                    ),
-                    DropdownMenuItem(
-                      value: "L",
-                      child: Text("Log out"),
-                    ),
-                    DropdownMenuItem(
-                      value: "H",
-                      child: Text("Home"),
-                    ),
-                  ],
-                  onChanged: (val){
-                    switch(val.toString()){
-                      case "A":
-                      //goto account
-                        break;
-                      case "L":
-                      //log out
-                        Navigator.pushNamed(context, "/Login");
-                        break;
-                      case "H":
-                      //Go Home
-                        Navigator.pushNamed(context, "/Product");
-                        break;
-                    }
-                  },
+                style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(Colors.white),
+                    foregroundColor: MaterialStatePropertyAll(Colors.blue)
                 ),
+                icon: const Icon(Icons.search, color: Colors.blue,),
+                label: const Text("Search"),
+            ),
+            ElevatedButton.icon(
+              onPressed: (){Navigator.pushNamed(context, "/Product");},
+              style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.white),
+                  foregroundColor: MaterialStatePropertyAll(Colors.blue)
               ),
+              icon: const Icon(Icons.home, color: Colors.blue,),
+              label: const Text("Log out"),
             ),
           ],
         ),
@@ -106,10 +76,28 @@ class _DashboardState extends State<Dashboard> {
                 },
               ),
               ListTile(
+                leading: const Icon(Icons.manage_accounts, color: Colors.blue,),
+                title: const Text("Manage Account", style: TextStyle(color: Colors.blue,),),
+                onTap: (){
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.store, color: Colors.blue,),
+                title: const Text("Your Store", style: TextStyle(color: Colors.blue,),),
+                onTap: (){
+                },
+              ),
+              ListTile(
                 leading: const Icon(Icons.emoji_food_beverage, color: Colors.blue,),
-                title: const Text("Products", style: TextStyle(color: Colors.blue,),),
+                title: const Text("New Product", style: TextStyle(color: Colors.blue,),),
                 onTap: (){
 
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.list, color: Colors.blue,),
+                title: const Text("Manage Products List", style: TextStyle(color: Colors.blue,),),
+                onTap: (){
                 },
               ),
               ListTile(

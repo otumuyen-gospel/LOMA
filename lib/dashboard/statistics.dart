@@ -22,20 +22,30 @@ class Statistics{
         width: responsiveViewWidth(),
         height: MediaQuery.of(context).size.height/2.2,
         margin: EdgeInsets.only(left: (margin/2),right: (margin/2),bottom: 20),
-        padding: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             border: Border.all(color: Colors.grey, width: 0.5),
+            image: DecorationImage(
+              image: Image.asset("assets/s1.jpg").image,
+              fit: BoxFit.cover,
+            ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Icon(Icons.emoji_food_beverage, color: Colors.blue, size: 30,),
-            Padding(padding: EdgeInsets.only(left: 10,right: 10), child:Text("Products",style: TextStyle(fontFamily: "verdana", fontSize: 18,fontWeight: FontWeight.bold,
-                overflow: TextOverflow.ellipsis, color: Colors.blue)),),
-            Padding(padding: EdgeInsets.only(left: 10,right: 10), child:Text("10",style: TextStyle(fontFamily: "verdana", color: Colors.blue)),),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: const Color.fromRGBO(10, 30, 70, 0.8),
+          ),
+          constraints: const BoxConstraints.expand(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(Icons.emoji_food_beverage, color: Colors.white, size: 30,),
+              Padding(padding: EdgeInsets.all(10), child:Text("Products",style: TextStyle(fontFamily: "verdana", fontSize: 18,fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis, color: Colors.white)),),
+              Padding(padding: EdgeInsets.all(10), child:Text("10",style: TextStyle(fontFamily: "verdana", color: Colors.white)),),
 
-          ],
+            ],
+          ),
         ),
       ) ,
     );
@@ -48,72 +58,102 @@ class Statistics{
         width: responsiveViewWidth(),
         height: MediaQuery.of(context).size.height/2.2,
         margin: EdgeInsets.only(left: (margin/2),right: (margin/2),bottom: 20),
-        padding: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: Colors.grey, width: 0.5),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: Colors.grey, width: 0.5),
+          image: DecorationImage(
+            image: Image.asset("assets/s3.jpg").image,
+            fit: BoxFit.cover,
+          ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Icon(Icons.search, color: Colors.blue, size: 30,),
-            Padding(padding: EdgeInsets.only(left: 10,right: 10), child:Text("Daily Search",style: TextStyle(fontFamily: "verdana", fontSize: 18,fontWeight: FontWeight.bold,
-                overflow: TextOverflow.ellipsis, color: Colors.blue)),),
-            Padding(padding: EdgeInsets.only(left: 10,right: 10), child:Text("10",style: TextStyle(fontFamily: "verdana", color: Colors.blue)),),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: const Color.fromRGBO(10, 30, 70, 0.8),
+          ),
+          constraints: const BoxConstraints.expand(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(Icons.search, color: Colors.white, size: 30,),
+              Padding(padding: EdgeInsets.all(10), child:Text("Daily Search",style: TextStyle(fontFamily: "verdana", fontSize: 18,fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis, color: Colors.white)),),
+              Padding(padding: EdgeInsets.all(10), child:Text("10",style: TextStyle(fontFamily: "verdana", color: Colors.white)),),
 
-          ],
+            ],
+          ),
         ),
       ) ,
     );
   }
   order(){
     return InkWell(
-      onTap: (){},// Goto order
+      onTap: (){},// Goto products
       child:Container(
+        alignment: Alignment.center,
         width: responsiveViewWidth(),
         height: MediaQuery.of(context).size.height/2.2,
         margin: EdgeInsets.only(left: (margin/2),right: (margin/2),bottom: 20),
-        alignment: Alignment.center,
-        padding: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           border: Border.all(color: Colors.grey, width: 0.5),
+          image: DecorationImage(
+            image: Image.asset("assets/s2.jpg").image,
+            fit: BoxFit.cover,
+          ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Icon(Icons.shopping_cart, color: Colors.blue, size: 30,),
-            Padding(padding: EdgeInsets.only(left: 10,right: 10), child:Text("New Order",style: TextStyle(fontFamily: "verdana", fontSize: 18,fontWeight: FontWeight.bold,
-                overflow: TextOverflow.ellipsis, color: Colors.blue)),),
-            Padding(padding: EdgeInsets.only(left: 10,right: 10), child:Text("1",style: TextStyle(fontFamily: "verdana", color: Colors.blue)),),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: const Color.fromRGBO(10, 30, 70, 0.8),
+          ),
+          constraints: const BoxConstraints.expand(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(Icons.shopping_cart, color: Colors.white, size: 30,),
+              Padding(padding: EdgeInsets.all(10), child:Text("New Orders",style: TextStyle(fontFamily: "verdana", fontSize: 18,fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis, color: Colors.white)),),
+              Padding(padding: EdgeInsets.all(10), child:Text("10",style: TextStyle(fontFamily: "verdana", color: Colors.white)),),
 
-          ],
+            ],
+          ),
         ),
       ) ,
     );
   }
   likes(){
     return InkWell(
-      onTap: (){},// Goto likes
+      onTap: (){},// Goto products
       child:Container(
+        alignment: Alignment.center,
         width: responsiveViewWidth(),
         height: MediaQuery.of(context).size.height/2.2,
         margin: EdgeInsets.only(left: (margin/2),right: (margin/2),bottom: 20),
-        alignment: Alignment.center,
-        padding: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           border: Border.all(color: Colors.grey, width: 0.5),
+          image: DecorationImage(
+            image: Image.asset("assets/s6.jpg").image,
+            fit: BoxFit.cover,
+          ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Icon(Icons.thumb_up, color: Colors.blue, size: 30,),
-            Padding(padding: EdgeInsets.only(left: 10,right: 10), child:Text("New Likes",style: TextStyle(fontFamily: "verdana", fontSize: 18,fontWeight: FontWeight.bold,
-                overflow: TextOverflow.ellipsis, color: Colors.blue)),),
-            Padding(padding: EdgeInsets.only(left: 10,right: 10), child:Text("10",style: TextStyle(fontFamily: "verdana", color: Colors.blue)),),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: const Color.fromRGBO(10, 30, 70, 0.8),
+          ),
+          constraints: const BoxConstraints.expand(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(Icons.thumb_up, color: Colors.white, size: 30,),
+              Padding(padding: EdgeInsets.all(10), child:Text("New Likes",style: TextStyle(fontFamily: "verdana", fontSize: 18,fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis, color: Colors.white)),),
+              Padding(padding: EdgeInsets.all(10), child:Text("10",style: TextStyle(fontFamily: "verdana", color: Colors.white)),),
 
-          ],
+            ],
+          ),
         ),
       ) ,
     );
@@ -122,24 +162,34 @@ class Statistics{
     return InkWell(
       onTap: (){},// Goto products
       child:Container(
+        alignment: Alignment.center,
         width: responsiveViewWidth(),
         height: MediaQuery.of(context).size.height/2.2,
         margin: EdgeInsets.only(left: (margin/2),right: (margin/2),bottom: 20),
-        alignment: Alignment.center,
-        padding: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           border: Border.all(color: Colors.grey, width: 0.5),
+          image: DecorationImage(
+            image: Image.asset("assets/s5.jpg").image,
+            fit: BoxFit.cover,
+          ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Icon(Icons.sms, color: Colors.blue, size: 30,),
-            Padding(padding: EdgeInsets.only(left: 10,right: 10), child:Text("New Sms",style: TextStyle(fontFamily: "verdana", fontSize: 18,fontWeight: FontWeight.bold,
-                overflow: TextOverflow.ellipsis, color: Colors.blue)),),
-            Padding(padding: EdgeInsets.only(left: 10,right: 10), child:Text("10",style: TextStyle(fontFamily: "verdana", color: Colors.blue)),),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: const Color.fromRGBO(10, 30, 70, 0.8),
+          ),
+          constraints: const BoxConstraints.expand(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(Icons.sms, color: Colors.white, size: 30,),
+              Padding(padding: EdgeInsets.all(10), child:Text("New Message",style: TextStyle(fontFamily: "verdana", fontSize: 18,fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis, color: Colors.white)),),
+              Padding(padding: EdgeInsets.all(10), child:Text("10",style: TextStyle(fontFamily: "verdana", color: Colors.white)),),
 
-          ],
+            ],
+          ),
         ),
       ) ,
     );
@@ -148,24 +198,34 @@ class Statistics{
     return InkWell(
       onTap: (){},// Goto products
       child:Container(
+        alignment: Alignment.center,
         width: responsiveViewWidth(),
         height: MediaQuery.of(context).size.height/2.2,
         margin: EdgeInsets.only(left: (margin/2),right: (margin/2),bottom: 20),
-        alignment: Alignment.center,
-        padding: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           border: Border.all(color: Colors.grey, width: 0.5),
+          image: DecorationImage(
+            image: Image.asset("assets/s4.jpg").image,
+            fit: BoxFit.cover,
+          ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Icon(Icons.phone, color: Colors.blue, size: 30,),
-            Padding(padding: EdgeInsets.only(left: 10,right: 10), child:Text("Recent Call",style: TextStyle(fontFamily: "verdana", fontSize: 18,fontWeight: FontWeight.bold,
-                overflow: TextOverflow.ellipsis, color: Colors.blue)),),
-            Padding(padding: EdgeInsets.only(left: 10,right: 10), child:Text("10",style: TextStyle(fontFamily: "verdana", color: Colors.blue)),),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: const Color.fromRGBO(10, 30, 70, 0.8),
+          ),
+          constraints: const BoxConstraints.expand(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(Icons.phone, color: Colors.white, size: 30,),
+              Padding(padding: EdgeInsets.all(10), child:Text("Recent Calls",style: TextStyle(fontFamily: "verdana", fontSize: 18,fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis, color: Colors.white)),),
+              Padding(padding: EdgeInsets.all(10), child:Text("10",style: TextStyle(fontFamily: "verdana", color: Colors.white)),),
 
-          ],
+            ],
+          ),
         ),
       ) ,
     );
