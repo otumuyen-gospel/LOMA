@@ -81,6 +81,7 @@ class _DashboardState extends State<Dashboard> {
                 onTap: (){
                 },
               ),
+              const Divider(color: Colors.grey),
               ListTile(
                 leading: const Icon(Icons.store, color: Colors.blue,),
                 title: const Text("Your Store", style: TextStyle(color: Colors.blue,),),
@@ -126,7 +127,25 @@ class _DashboardState extends State<Dashboard> {
                 onTap: (){
                 },
               ),
-
+              const Divider(color: Colors.grey),
+              ListTile(
+                leading: const Icon(Icons.ads_click, color: Colors.blue,),
+                title: const Text("Advertise with us", style: TextStyle(color: Colors.blue,),),
+                onTap: (){
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.search_off, color: Colors.blue,),
+                title: const Text("Turn on Global Search", style: TextStyle(color: Colors.blue,),),
+                onTap: (){
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.notifications, color: Colors.blue,),
+                title: const Text("Paid Notification", style: TextStyle(color: Colors.blue,),),
+                onTap: (){
+                },
+              ),
             ],
           ),
         ),
