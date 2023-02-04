@@ -9,15 +9,6 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  responsiveView(double viewportWidth){
-    if(viewportWidth > 900){
-      return 3;
-    }else if(viewportWidth > 600){
-      return 2;
-    }else{
-      return 1;
-    }
-  }
   @override
   Widget build(BuildContext context) {
     return  SafeArea(
@@ -36,23 +27,19 @@ class _DashboardState extends State<Dashboard> {
             );
           }),
           actions: [
-            ElevatedButton.icon(
-                onPressed: (){},
-                style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(Colors.white),
-                    foregroundColor: MaterialStatePropertyAll(Colors.blue)
-                ),
+            IconButton(
+                onPressed: (){
+                  Navigator.pushNamed(context, "/DashboardSearch");
+                },
                 icon: const Icon(Icons.search, color: Colors.blue,),
-                label: const Text("Search"),
             ),
-            ElevatedButton.icon(
+            ElevatedButton(
               onPressed: (){Navigator.pushNamed(context, "/Product");},
               style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.white),
-                  foregroundColor: MaterialStatePropertyAll(Colors.blue)
+                  backgroundColor: MaterialStatePropertyAll(Colors.redAccent),
+                  foregroundColor: MaterialStatePropertyAll(Colors.white),
               ),
-              icon: const Icon(Icons.home, color: Colors.blue,),
-              label: const Text("Log out"),
+              child: const Text("Logout"),
             ),
           ],
         ),
@@ -68,6 +55,13 @@ class _DashboardState extends State<Dashboard> {
                     //take user to account page
                   },
                 ),
+              ),
+              ListTile(
+                leading: const Icon(Icons.dashboard, color: Colors.blue,),
+                title: const Text("Home", style: TextStyle(color: Colors.blue,),),
+                onTap: (){
+                  Navigator.pushNamed(context, "/Product");
+                },
               ),
               ListTile(
                 leading: const Icon(Icons.location_on, color: Colors.blue,),
@@ -86,6 +80,7 @@ class _DashboardState extends State<Dashboard> {
                 leading: const Icon(Icons.store, color: Colors.blue,),
                 title: const Text("Your Store", style: TextStyle(color: Colors.blue,),),
                 onTap: (){
+                  Navigator.pushNamed(context, "/Store");
                 },
               ),
               ListTile(

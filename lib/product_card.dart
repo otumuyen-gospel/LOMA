@@ -67,8 +67,10 @@ class ProductCard{
             Padding(padding: const EdgeInsets.all(10), child:Text(name,style: const TextStyle(fontFamily: "verdana", fontSize: 20,fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis, color: Colors.blue)),),
             Padding(padding: const EdgeInsets.all(10), child:Text(description,style: const TextStyle(fontFamily: "verdana", color: Colors.grey)),),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+            Wrap(
+              direction: Axis.horizontal,
+              alignment: WrapAlignment.start,
+              crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 ElevatedButton.icon(
                   onPressed: (){},

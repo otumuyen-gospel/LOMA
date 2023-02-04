@@ -40,7 +40,9 @@ dependencies:
   url_launcher: ^6.1.7
   carousel_slider: ^4.2.1
   regexed_validator: ^2.0.0
-
+  file_picker: ^4.6.1
+  open_file: ^3.2.1
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

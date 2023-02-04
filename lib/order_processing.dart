@@ -268,12 +268,15 @@ class _OrderFormState extends State<OrderForm> {
                             ),
                           ),
                           const Text("Recipient Gender", style: TextStyle(color: Colors.blueGrey, fontWeight: FontWeight.bold),),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
+                          Wrap(
+                            direction: Axis.horizontal,
+                            alignment: WrapAlignment.center,
+                            crossAxisAlignment: WrapCrossAlignment.center,
                             children: Gender.values.map((e){
                               return Padding(
                                   padding: const EdgeInsets.all(10),
-                                  child: Row(
+                                  child: Wrap(
+                                    crossAxisAlignment: WrapCrossAlignment.center,
                                     children: [
                                       Radio(
                                           value: e,

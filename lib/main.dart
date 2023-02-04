@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:loma/dashboard/create_store.dart';
 import 'package:loma/dashboard/dashboard.dart';
+import 'package:loma/dashboard/edit_store.dart';
 import 'package:loma/forgot_email.dart';
 import 'package:loma/forgot_newpassword.dart';
 import 'package:loma/forgot_verify.dart';
@@ -13,6 +15,8 @@ import 'package:loma/product.dart';
 import 'package:loma/store_search.dart';
 import 'package:loma/stores.dart';
 
+import 'dashboard/dashboard_search.dart';
+import 'dashboard/store.dart';
 import 'order_processing.dart';
 void main() {
   runApp(const Loma());
@@ -45,6 +49,7 @@ class Loma extends StatelessWidget {
         '/Product': (BuildContext ctx) => const Product(),
         '/ProductSearch': (BuildContext ctx) => const ProductSearch(),
         '/StoreSearch': (BuildContext ctx) => const StoreSearch(),
+        '/DashboardSearch': (BuildContext ctx) => const DashboardSearch(),
         '/Login': (BuildContext ctx) => const Login(),
         '/Forgot': (BuildContext ctx) => const ForgotEmail(),
         '/Signup': (BuildContext ctx) => const Signup(),
@@ -55,6 +60,9 @@ class Loma extends StatelessWidget {
         '/OrderForm': (BuildContext ctx) => const OrderForm(),
         '/Privacy': (BuildContext ctx) => const Privacy(),
         "/Dashboard": (BuildContext ctx) => const Dashboard(),
+        "/CreateStore": (BuildContext ctx) => const CreateStore(),
+        "/EditStore": (BuildContext ctx) => const EditStore(),
+        "/Store": (BuildContext ctx) => const Store(),
       },
     );
 

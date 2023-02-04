@@ -53,11 +53,15 @@ class StoreCard{
 
             Padding(padding: const EdgeInsets.only(left: 10,right: 10, top: 10, bottom: 20), child:Text("Location : $location",style: const TextStyle(fontFamily: "verdana", color: Colors.redAccent,
               fontSize: 20,fontWeight: FontWeight.bold,),),),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            Wrap(
+              direction: Axis.horizontal,
+              alignment: WrapAlignment.center,
               children: [
                 for(String tags in keyword)
-                  Chip(label: Text(tags,style: const TextStyle(color: Colors.white),), backgroundColor: Colors.blue,),
+                  Padding(
+                      padding: const EdgeInsets.only(right: 20),
+                      child: Chip(label: Text(tags,style: const TextStyle(color: Colors.white),), backgroundColor: Colors.blue,),
+                  ),
               ],
             ),
           ],
