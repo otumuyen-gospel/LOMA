@@ -1,9 +1,5 @@
-
 import 'package:flutter/material.dart';
-import 'package:loma/ad_sponsor.dart';
 import 'package:loma/store_card.dart';
-
-import 'ad_mobile.dart';
 
 class Stores extends StatefulWidget {
   const Stores({super.key});
@@ -138,9 +134,8 @@ class _StoresState extends State<Stores> {
             ),
           ),
           body:ListView(
-            padding: const EdgeInsets.only(bottom: 150),
+            padding: const EdgeInsets.only(top: 20,bottom: 20),
             children: [
-              AdGoogleMobileSpace(context).create(),
               Wrap(
                 clipBehavior: Clip.none,
                 direction: Axis.horizontal,
@@ -151,17 +146,6 @@ class _StoresState extends State<Stores> {
                 ],
               ),
             ],
-          ),
-
-          bottomSheet: BottomSheet(
-            backgroundColor: Colors.white,
-            clipBehavior: Clip.none,
-            elevation: 5,
-            enableDrag: false,
-            onClosing: () {  },
-            builder: (BuildContext context) {
-              return SponsoredAds(context).getChildren();
-            },
           ),
 
         ),

@@ -4,9 +4,6 @@ import 'package:loma/product_action.dart';
 import 'package:loma/product_more.dart';
 import 'package:loma/product_order.dart';
 import 'package:loma/product_similar.dart';
-import 'package:loma/ad_sponsor.dart';
-
-import 'ad_mobile.dart';
 
 class Order extends StatefulWidget {
   const Order({super.key});
@@ -134,7 +131,6 @@ class _OrderState extends State<Order> {
         body: ListView(
           padding: const EdgeInsets.only(bottom: 150),
           children: [
-            AdGoogleMobileSpace(context).create(),
             //product order view
             ProductOrder(context).view(),
             //product actions
@@ -146,17 +142,6 @@ class _OrderState extends State<Order> {
             Padding(padding:const EdgeInsets.only(top: 3, bottom: 5,left: 5),child:Text("Similar Product", style: Theme.of(context).textTheme.headline5,),),
             ProductSimilar(context).show(),
           ],
-        ),
-
-        bottomSheet: BottomSheet(
-          backgroundColor: Colors.white,
-          clipBehavior: Clip.none,
-          elevation: 5,
-          enableDrag: false,
-          onClosing: () {  },
-          builder: (BuildContext context) {
-            return SponsoredAds(context).getChildren();
-          },
         ),
       ),
     );

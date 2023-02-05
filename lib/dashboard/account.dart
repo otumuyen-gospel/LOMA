@@ -1,13 +1,15 @@
 
 import 'package:flutter/material.dart';
 
-class Store extends StatefulWidget {
-  const Store({super.key});
+
+class Account extends StatefulWidget {
+  const Account({super.key});
   @override
-  State<Store> createState() => _StoreState();
+  State<Account> createState() => _AccountState();
 }
 
-class _StoreState extends State<Store> {
+class _AccountState extends State<Account> {
+  Image img = Image.asset("assets/cover.png");
   responsiveViewWidth(context) {
     double width = 0;
     double viewportWidth = MediaQuery.of(context).size.width;
@@ -18,32 +20,12 @@ class _StoreState extends State<Store> {
     }
     return width;
   }
-  responsiveViewHeight(context) {
-    double height = 0;
-    double viewportWidth = MediaQuery.of(context).size.width;
-    if (viewportWidth > 600) {
-      height = MediaQuery.of(context).size.height * 1.0; // full height
-    } else{
-      height = MediaQuery.of(context).size.height * 0.9;
-    }
-    return height;
-  }
-  responsiveAlignment(context) {
-    MainAxisAlignment align = MainAxisAlignment.spaceEvenly;
-    double viewportWidth = MediaQuery.of(context).size.width;
-    if (viewportWidth > 600) {
-      align = MainAxisAlignment.spaceEvenly; // full height
-    } else{
-      align = MainAxisAlignment.spaceBetween;
-    }
-    return align;
-  }
   responsiveText(context){
     double viewportWidth = MediaQuery.of(context).size.width;
     if(viewportWidth > 700){
-      return 40.0;
+      return 25.0;
     }else{
-      return 28.0;
+      return 18.0;
     }
   }
   @override
@@ -54,7 +36,7 @@ class _StoreState extends State<Store> {
           backgroundColor: Colors.white,
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
-          title: const Text("Store", style: TextStyle(color: Colors.blue,fontFamily: 'verdana'),),
+          title: const Text("Account", style: TextStyle(color: Colors.blue,fontFamily: 'verdana'),),
           leading: Builder(builder: (context){
             return IconButton(
               onPressed: (){
@@ -89,7 +71,7 @@ class _StoreState extends State<Store> {
                   title: const Text("Profile Name", style: TextStyle(color: Colors.blue,),),
                   subtitle: const Text("Profile description", style: TextStyle(color: Colors.grey,),),
                   onTap: (){
-                    Navigator.pushNamed(context, "/Account");
+                    //take user to account page
                   },
                 ),
               ),
@@ -110,7 +92,6 @@ class _StoreState extends State<Store> {
                 leading: const Icon(Icons.manage_accounts, color: Colors.blue,),
                 title: const Text("Manage Account", style: TextStyle(color: Colors.blue,),),
                 onTap: (){
-                  Navigator.pushNamed(context, "/Account");
                 },
               ),
               const Divider(color: Colors.grey),
@@ -118,7 +99,7 @@ class _StoreState extends State<Store> {
                 leading: const Icon(Icons.store, color: Colors.blue,),
                 title: const Text("Your Store", style: TextStyle(color: Colors.blue,),),
                 onTap: (){
-                  // on store page
+                  Navigator.pushNamed(context, "/Store");
                 },
               ),
               ListTile(
@@ -152,99 +133,82 @@ class _StoreState extends State<Store> {
                 clipBehavior: Clip.none,
                 direction: Axis.horizontal,
                 children: [
-                  //Left side
-                  Container(
+                  Stack(
                     alignment: Alignment.topCenter,
-                    clipBehavior: Clip.none,
-                    padding: const EdgeInsets.all(10),
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      mainAxisAlignment: responsiveAlignment(context),
-                      children: [
-                        Container(
+                    children: [
+                      Container(
+                        clipBehavior: Clip.none,
+                        alignment: Alignment.center,
+                        width: MediaQuery.of(context).size.width,
+                        height: (MediaQuery.of(context).size.height / 3),
+                        color: Colors.blue,
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.all(5),
+                        width: responsiveViewWidth(context)/2,
+                        height: responsiveViewWidth(context)/2,
+                        margin: EdgeInsets.only(top: (MediaQuery.of(context).size.height / 4.5) ),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: Colors.grey, width: 0.5),
+                          borderRadius: BorderRadius.circular(responsiveViewWidth(context)/2),
+                        ),
+                        child: Container(
                           alignment: Alignment.center,
-                          padding: const EdgeInsets.all(5),
-                          width: responsiveViewWidth(context)/3,
-                          height: responsiveViewWidth(context)/3,
+                          width: responsiveViewWidth(context)/2,
+                          height: responsiveViewWidth(context)/2,
                           decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(color: Colors.grey, width: 0.5),
-                            borderRadius: BorderRadius.circular(responsiveViewWidth(context)/3),
-                          ),
-                          child: Container(
-                            alignment: Alignment.center,
-                            width: responsiveViewWidth(context)/3,
-                            height: responsiveViewWidth(context)/3,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(responsiveViewWidth(context))/3,
-                              image: DecorationImage(
-                                image: Image.asset("assets/1.jpg").image,
-                                fit: BoxFit.cover,
-                              ),
+                            borderRadius: BorderRadius.circular(responsiveViewWidth(context))/2,
+                            image: DecorationImage(
+                              image: img.image,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
-
-                        Wrap(
-                          direction: Axis.vertical,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: const [
-                            Icon(Icons.phone, color: Colors.blue,),
-                            Text("+234 08544 9349 394", style: TextStyle(color: Colors.blue,
-                                fontWeight: FontWeight.bold,),)
-                          ],
-                        ),
-                        Wrap(
-                          direction: Axis.vertical,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: [
-                            const Icon(Icons.house, color: Colors.blue,),
-                            Container(
-                              width: responsiveViewWidth(context)/1.1,
-                              alignment: Alignment.center,
-                              clipBehavior: Clip.none,
-                              child: const Text("Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi egestas lectus non diam interdum ullamcorper", style: TextStyle(color: Colors.blue,
-                                fontWeight: FontWeight.bold,),),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(10),
-                          child: ElevatedButton(
-                            style: const ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(Colors.white),
-                            ),
-                            onPressed: (){Navigator.pushNamed(context, "/EditStore");},
-                            child: const Text("Edit Store", style: TextStyle(color: Colors.blue),),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-
-                  //right side
                   Container(
                     alignment: Alignment.center,
                     padding: const EdgeInsets.only(bottom: 20),
-                    width: responsiveViewWidth(context),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Padding(padding:const EdgeInsets.all(10), child:Text("Ipaja",style: TextStyle(color: Colors.blueGrey,
+                        Padding(padding:const EdgeInsets.all(25), child:Text("Profile Name",style: TextStyle(color: Colors.blueGrey,
                             fontSize: responsiveText(context),letterSpacing: 3, fontStyle: FontStyle.italic)),),
-                        Padding(padding:const EdgeInsets.all(10), child:Text("Lorem Ipsum",style: TextStyle(color: Colors.blue, fontSize: responsiveText(context),
+                        Padding(padding:const EdgeInsets.all(25), child:Text("otumuyengospel@gmail.com",style: TextStyle(color: Colors.blue, fontSize: responsiveText(context),
                             letterSpacing: 3)),),
-                        const Padding(padding:EdgeInsets.all(10), child:Text("Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi egestas lectus non diam interdum ullamcorper",
+                        const Padding(padding:EdgeInsets.all(25), child:Text("Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi egestas lectus non diam interdum ullamcorper",
                             style: TextStyle(fontSize: 15)),),
                         Wrap(
                           direction: Axis.horizontal,
                           alignment: WrapAlignment.center,
                           children: [
-                            for(String tags in ["eggs","palte","clothes"])
-                              Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Chip(label: Text(tags,style: const TextStyle(color: Colors.white),), backgroundColor: Colors.blue,),
-                              )
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              child: ElevatedButton(
+                                style: const ButtonStyle(
+                                  backgroundColor: MaterialStatePropertyAll(Colors.white),
+                                ),
+                                onPressed: (){
+                                  //edit account
+                                },
+                                child: const Text("Edit Account", style: TextStyle(color: Colors.blue),),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              child: ElevatedButton(
+                                style: const ButtonStyle(
+                                  backgroundColor: MaterialStatePropertyAll(Colors.white),
+                                ),
+                                onPressed: (){
+                                  //edit account
+                                },
+                                child: const Text("Delete Account", style: TextStyle(color: Colors.blue),),
+                              ),
+                            ),
                           ],
                         ),
                       ],

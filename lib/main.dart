@@ -15,6 +15,7 @@ import 'package:loma/product.dart';
 import 'package:loma/store_search.dart';
 import 'package:loma/stores.dart';
 
+import 'dashboard/account.dart';
 import 'dashboard/dashboard_search.dart';
 import 'dashboard/store.dart';
 import 'order_processing.dart';
@@ -63,6 +64,7 @@ class Loma extends StatelessWidget {
         "/CreateStore": (BuildContext ctx) => const CreateStore(),
         "/EditStore": (BuildContext ctx) => const EditStore(),
         "/Store": (BuildContext ctx) => const Store(),
+        "/Account": (BuildContext ctx) => const Account(),
       },
     );
 

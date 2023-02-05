@@ -36,7 +36,7 @@ class _DashboardState extends State<Dashboard> {
             ElevatedButton(
               onPressed: (){Navigator.pushNamed(context, "/Product");},
               style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.redAccent),
+                  backgroundColor: MaterialStatePropertyAll(Colors.blue),
                   foregroundColor: MaterialStatePropertyAll(Colors.white),
               ),
               child: const Text("Logout"),
@@ -52,7 +52,7 @@ class _DashboardState extends State<Dashboard> {
                   title: const Text("Profile Name", style: TextStyle(color: Colors.blue,),),
                   subtitle: const Text("Profile description", style: TextStyle(color: Colors.grey,),),
                   onTap: (){
-                    //take user to account page
+                    Navigator.pushNamed(context, "/Account");
                   },
                 ),
               ),
@@ -73,6 +73,7 @@ class _DashboardState extends State<Dashboard> {
                 leading: const Icon(Icons.manage_accounts, color: Colors.blue,),
                 title: const Text("Manage Account", style: TextStyle(color: Colors.blue,),),
                 onTap: (){
+                  Navigator.pushNamed(context, "/Account");
                 },
               ),
               const Divider(color: Colors.grey),
@@ -103,44 +104,6 @@ class _DashboardState extends State<Dashboard> {
 
                 },
               ),
-              ListTile(
-                leading: const Icon(Icons.call, color: Colors.blue,),
-                title: const Text("Manage Calls", style: TextStyle(color: Colors.blue,),),
-                onTap: (){
-
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.sms, color: Colors.blue,),
-                title: const Text("Manage Message", style: TextStyle(color: Colors.blue,),),
-                onTap: (){
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.thumb_up_sharp, color: Colors.blue,),
-                title: const Text("See Likes", style: TextStyle(color: Colors.blue,),),
-                onTap: (){
-                },
-              ),
-              const Divider(color: Colors.grey),
-              ListTile(
-                leading: const Icon(Icons.ads_click, color: Colors.blue,),
-                title: const Text("Advertise with us", style: TextStyle(color: Colors.blue,),),
-                onTap: (){
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.search_off, color: Colors.blue,),
-                title: const Text("Turn on Global Search", style: TextStyle(color: Colors.blue,),),
-                onTap: (){
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.notifications, color: Colors.blue,),
-                title: const Text("Paid Notification", style: TextStyle(color: Colors.blue,),),
-                onTap: (){
-                },
-              ),
             ],
           ),
         ),
@@ -156,9 +119,6 @@ class _DashboardState extends State<Dashboard> {
                   Statistics(context).product(),
                   Statistics(context).search(),
                   Statistics(context).order(),
-                  Statistics(context).likes(),
-                  Statistics(context).calls(),
-                  Statistics(context).messages(),
                 ],
               ),
             ),

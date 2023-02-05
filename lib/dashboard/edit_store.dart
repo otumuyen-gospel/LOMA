@@ -55,6 +55,19 @@ class _EditStoreState extends State<EditStore> {
     }
     return width;
   }
+  responsiveViewHeight(context) {
+    return MediaQuery.of(context).size.height * 1.0;
+  }
+  responsiveAlignment(context) {
+    MainAxisAlignment align = MainAxisAlignment.spaceEvenly;
+    double viewportWidth = MediaQuery.of(context).size.width;
+    if (viewportWidth > 600) {
+      align = MainAxisAlignment.spaceEvenly; // full height
+    } else{
+      align = MainAxisAlignment.spaceBetween;
+    }
+    return align;
+  }
   responsiveText(context){
     double viewportWidth = MediaQuery.of(context).size.width;
     if(viewportWidth > 700){
@@ -90,7 +103,7 @@ class _EditStoreState extends State<EditStore> {
             ElevatedButton(
               onPressed: (){Navigator.pushNamed(context, "/Product");},
               style: const ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(Colors.redAccent),
+                backgroundColor: MaterialStatePropertyAll(Colors.blue),
                 foregroundColor: MaterialStatePropertyAll(Colors.white),
               ),
               child: const Text("Logout"),
@@ -106,7 +119,7 @@ class _EditStoreState extends State<EditStore> {
                   title: const Text("Profile Name", style: TextStyle(color: Colors.blue,),),
                   subtitle: const Text("Profile description", style: TextStyle(color: Colors.grey,),),
                   onTap: (){
-                    //take user to account page
+                    Navigator.pushNamed(context, "/Account");
                   },
                 ),
               ),
@@ -127,6 +140,7 @@ class _EditStoreState extends State<EditStore> {
                 leading: const Icon(Icons.manage_accounts, color: Colors.blue,),
                 title: const Text("Manage Account", style: TextStyle(color: Colors.blue,),),
                 onTap: (){
+                  Navigator.pushNamed(context, "/Account");
                 },
               ),
               const Divider(color: Colors.grey),
@@ -157,44 +171,6 @@ class _EditStoreState extends State<EditStore> {
 
                 },
               ),
-              ListTile(
-                leading: const Icon(Icons.call, color: Colors.blue,),
-                title: const Text("Manage Calls", style: TextStyle(color: Colors.blue,),),
-                onTap: (){
-
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.sms, color: Colors.blue,),
-                title: const Text("Manage Message", style: TextStyle(color: Colors.blue,),),
-                onTap: (){
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.thumb_up_sharp, color: Colors.blue,),
-                title: const Text("See Likes", style: TextStyle(color: Colors.blue,),),
-                onTap: (){
-                },
-              ),
-              const Divider(color: Colors.grey),
-              ListTile(
-                leading: const Icon(Icons.ads_click, color: Colors.blue,),
-                title: const Text("Advertise with us", style: TextStyle(color: Colors.blue,),),
-                onTap: (){
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.search_off, color: Colors.blue,),
-                title: const Text("Turn on Global Search", style: TextStyle(color: Colors.blue,),),
-                onTap: (){
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.notifications, color: Colors.blue,),
-                title: const Text("Paid Notification", style: TextStyle(color: Colors.blue,),),
-                onTap: (){
-                },
-              ),
             ],
           ),
         ),
@@ -212,10 +188,10 @@ class _EditStoreState extends State<EditStore> {
                     clipBehavior: Clip.none,
                     padding: const EdgeInsets.all(10),
                     width: responsiveViewWidth(context),
-                    height: MediaQuery.of(context).size.height,
+                    height: responsiveViewHeight(context),
                     color:const Color.fromRGBO(240, 240, 240, 1),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: responsiveAlignment(context),
                       children: [
                         FutureBuilder<dynamic>(
                             future: future,
