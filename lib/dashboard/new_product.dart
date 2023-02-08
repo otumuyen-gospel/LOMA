@@ -4,51 +4,36 @@ import 'package:flutter/material.dart';
 import 'package:loma/dashboard/filepicker.dart';
 import 'package:regexed_validator/regexed_validator.dart';
 
-class CreateStore extends StatefulWidget {
-  const CreateStore({super.key});
+class NewProduct extends StatefulWidget {
+  const NewProduct({super.key});
   @override
-  State<CreateStore> createState() => _CreateStoreState();
+  State<NewProduct> createState() => _NewProductState();
 }
 
-class _CreateStoreState extends State<CreateStore> {
+class _NewProductState extends State<NewProduct> {
   final GlobalKey<FormState> _key = GlobalKey();
-  final GlobalKey<FormState> _key2 = GlobalKey();
   String description = "";
-  String address = "";
   String name = "";
-  String phone = "";
-  List<String> tags = [];
-  List<Padding> tagsWidget = [];
-  String tagValue = "";
+  double price = 0;
+  String currency = "";
+  String category = "";
   var picker = SystemFilePicker();
   Future future = Future(() => null);
   Image img = Image.asset("assets/cover.png");
-  _addTag(String tag) {
-    if (tagsWidget.length <= 2) {
-      var chip = Padding(
-        padding: const EdgeInsets.only(right: 20),
-        child: Chip(
-          label: Text(
-            tag,
-            style: const TextStyle(color: Colors.blue),
+  selectionCategories(List<String> cats) {
+    return DropdownButtonFormField(
+      items: [
+        for (int i = 0; i < cats.length; i++)
+          DropdownMenuItem(
+            value: cats[i],
+            child: Text(cats[i]),
+            onTap: () {},
           ),
-          backgroundColor: Colors.white,
-          onDeleted: () {
-            setState(() {
-              var pos = tags.indexOf(tag);
-              tags.removeAt(pos);
-              tagsWidget.removeAt(pos);
-            });
-          },
-        ),
-      );
-      tags.add(tag);
-      tagsWidget.add(chip);
-    }
-  }
-
-  List<Widget> tagList() {
-    return tagsWidget;
+      ],
+      onChanged: (value) {
+        category = value as String;
+      },
+    );
   }
 
   responsiveViewWidth(context) {
@@ -95,7 +80,7 @@ class _CreateStoreState extends State<CreateStore> {
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           title: const Text(
-            "New Store",
+            "Account",
             style: TextStyle(color: Colors.blue, fontFamily: 'verdana'),
           ),
           leading: Builder(builder: (context) {
@@ -152,7 +137,7 @@ class _CreateStoreState extends State<CreateStore> {
                     ),
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, "/Account");
+                    Navigator.pushNamed(context, "");
                   },
                 ),
               ),
@@ -229,7 +214,7 @@ class _CreateStoreState extends State<CreateStore> {
                   ),
                 ),
                 onTap: () {
-                  Navigator.pushNamed(context, "/NewProduct");
+                  Navigator.pushNamed(context, "");
                 },
               ),
               ListTile(
@@ -271,7 +256,7 @@ class _CreateStoreState extends State<CreateStore> {
                 color: Colors.blue,
               ),
               child: Text(
-                "CREATE STORE",
+                "NEW PRODUCT",
                 style: TextStyle(
                     color: Colors.white, fontSize: responsiveText(context)),
               ),
@@ -383,7 +368,6 @@ class _CreateStoreState extends State<CreateStore> {
                                 );
                               }
                             }),
-
                         Container(
                           padding: const EdgeInsets.all(10),
                           child: ElevatedButton(
@@ -402,43 +386,6 @@ class _CreateStoreState extends State<CreateStore> {
                             ),
                           ),
                         ),
-
-                        //set Business tags
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.only(bottom: 10),
-                              child: Text("Enter your business tag(3 maximum)"),
-                            ),
-                            Form(
-                              key: _key2,
-                              child: TextFormField(
-                                decoration: const InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.tag,
-                                    color: Colors.blue,
-                                  ),
-                                ),
-                                onFieldSubmitted: (val) {
-                                  if (val.isNotEmpty) {
-                                    setState(() {
-                                      _addTag(val);
-                                    });
-                                  }
-                                },
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 15, bottom: 15),
-                              child: Wrap(
-                                direction: Axis.horizontal,
-                                children: tagList(),
-                              ),
-                            )
-                          ],
-                        ),
                       ],
                     ),
                   ),
@@ -456,14 +403,14 @@ class _CreateStoreState extends State<CreateStore> {
                         children: [
                           const Padding(
                             padding: EdgeInsets.all(10),
-                            child: Text("Create Store",
+                            child: Text("Enter Product Details",
                                 style: TextStyle(
                                     color: Colors.blue,
                                     fontSize: 20,
                                     letterSpacing: 3)),
                           ),
                           const Text(
-                            "Store Details",
+                            "Product Details",
                             style: TextStyle(
                                 color: Colors.blueGrey,
                                 fontWeight: FontWeight.bold),
@@ -516,10 +463,10 @@ class _CreateStoreState extends State<CreateStore> {
                                     initialValue: name,
                                     decoration: const InputDecoration(
                                       prefixIcon: Icon(
-                                        Icons.business,
+                                        Icons.emoji_food_beverage,
                                         color: Colors.blue,
                                       ),
-                                      labelText: "Business Name",
+                                      labelText: "Product Name",
                                       labelStyle: TextStyle(color: Colors.grey),
                                       border: InputBorder.none,
                                     ),
@@ -532,38 +479,7 @@ class _CreateStoreState extends State<CreateStore> {
                                       if (val == null ||
                                           val.isEmpty ||
                                           validator.name(val)) {
-                                        return "Enter Business name";
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                ),
-                                Container(
-                                  width: responsiveViewWidth(context),
-                                  margin: const EdgeInsets.all(10),
-                                  decoration: const BoxDecoration(
-                                    border: Border.fromBorderSide(BorderSide(
-                                        color: Colors.grey, width: 1.2)),
-                                  ),
-                                  child: TextFormField(
-                                    initialValue: address,
-                                    decoration: const InputDecoration(
-                                      prefixIcon: Icon(
-                                        Icons.location_city,
-                                        color: Colors.blue,
-                                      ),
-                                      labelText: "Business Full Address",
-                                      labelStyle: TextStyle(color: Colors.grey),
-                                      border: InputBorder.none,
-                                    ),
-                                    onChanged: (String val) {
-                                      setState(() {
-                                        address = val;
-                                      });
-                                    },
-                                    validator: (String? val) {
-                                      if (val == null || val.isEmpty) {
-                                        return "Enter address";
+                                        return "Enter Profile name";
                                       }
                                       return null;
                                     },
@@ -578,26 +494,26 @@ class _CreateStoreState extends State<CreateStore> {
                                   ),
                                   child: TextFormField(
                                     keyboardType: TextInputType.phone,
-                                    initialValue: phone,
+                                    initialValue: price.toString(),
                                     decoration: const InputDecoration(
                                       prefixIcon: Icon(
-                                        Icons.phone,
+                                        Icons.money,
                                         color: Colors.blue,
                                       ),
-                                      labelText: "Business Contact Number",
+                                      labelText: "Price",
                                       labelStyle: TextStyle(color: Colors.grey),
                                       border: InputBorder.none,
                                     ),
                                     onChanged: (String val) {
                                       setState(() {
-                                        phone = val;
+                                        price = val.trim() as double;
                                       });
                                     },
                                     validator: (String? val) {
                                       if (val == null ||
                                           val.isEmpty ||
-                                          !validator.phone(val)) {
-                                        return "Enter Number";
+                                          (val.trim() as double).isNaN) {
+                                        return "Enter Price";
                                       }
                                       return null;
                                     },
@@ -605,6 +521,16 @@ class _CreateStoreState extends State<CreateStore> {
                                 ),
                               ],
                             ),
+                          ),
+                          Container(
+                            width: responsiveViewWidth(context),
+                            margin: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.blue),
+                              color: Colors.blue,
+                            ),
+                            child:
+                                selectionCategories(["wear", "shoes", "coths"]),
                           ),
                           Container(
                             width: responsiveViewWidth(context),
@@ -624,7 +550,7 @@ class _CreateStoreState extends State<CreateStore> {
                                 }
                               },
                               child: const Text(
-                                "Update",
+                                "Create Product",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white),

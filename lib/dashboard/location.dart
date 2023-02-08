@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class Store extends StatefulWidget {
-  const Store({super.key});
+class Location extends StatefulWidget {
+  const Location({super.key});
   @override
-  State<Store> createState() => _StoreState();
+  State<Location> createState() => _LocationState();
 }
 
-class _StoreState extends State<Store> {
+class _LocationState extends State<Location> {
   responsiveViewWidth(context) {
     double width = 0;
     double viewportWidth = MediaQuery.of(context).size.width;
@@ -146,7 +146,7 @@ class _StoreState extends State<Store> {
                   ),
                 ),
                 onTap: () {
-                  Navigator.pushNamed(context, "/Location");
+                  Navigator.pushNamed(context, "");
                 },
               ),
               ListTile(
@@ -178,6 +178,7 @@ class _StoreState extends State<Store> {
                 ),
                 onTap: () {
                   // on store page
+                  Navigator.pushNamed(context, "/Store");
                 },
               ),
               ListTile(
@@ -234,7 +235,7 @@ class _StoreState extends State<Store> {
                 color: Colors.blue,
               ),
               child: Text(
-                "VIEWING YOUR STORE",
+                "YOUR LOCATION",
                 style: TextStyle(
                     color: Colors.white, fontSize: responsiveText(context)),
               ),
@@ -261,7 +262,7 @@ class _StoreState extends State<Store> {
                               3), //two third of screen height
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: Image.asset("assets/s1.jpg").image,
+                              image: Image.asset("assets/m1.jpg").image,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -290,7 +291,7 @@ class _StoreState extends State<Store> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10),
-                          child: Text("Lorem Ipsum",
+                          child: Text("Refresh Location",
                               style: TextStyle(
                                   color: Colors.blue,
                                   fontSize: responsiveText(context),
@@ -299,39 +300,25 @@ class _StoreState extends State<Store> {
                         const Padding(
                           padding: EdgeInsets.all(10),
                           child: Text(
-                              "Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi egestas lectus non diam interdum ullamcorper",
+                              "When you click the button below the system automatically capture your"
+                              " current location as your primary business location."
+                              " try to refresh if the location displayed above is not your primary "
+                              " business location and ensure you're within your primary business location.",
                               style: TextStyle(fontSize: 15)),
-                        ),
-                        Wrap(
-                          direction: Axis.horizontal,
-                          alignment: WrapAlignment.center,
-                          children: [
-                            for (String tags in ["eggs", "palte", "clothes"])
-                              Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: Chip(
-                                  label: Text(
-                                    tags,
-                                    style: const TextStyle(color: Colors.white),
-                                  ),
-                                  backgroundColor: Colors.blue,
-                                ),
-                              )
-                          ],
                         ),
                         Container(
                           padding: const EdgeInsets.all(10),
-                          child: ElevatedButton(
+                          child: ElevatedButton.icon(
                             style: const ButtonStyle(
                               backgroundColor:
                                   MaterialStatePropertyAll(Colors.white),
                             ),
-                            onPressed: () {
-                              Navigator.pushNamed(context, "/EditStore");
-                            },
-                            child: const Text(
-                              "Edit Store",
-                              style: TextStyle(color: Colors.blue),
+                            onPressed: () {},
+                            icon: const Icon(Icons.location_on,
+                                color: Colors.grey, size: 25),
+                            label: const Text(
+                              "Refresh",
+                              style: TextStyle(color: Colors.grey),
                             ),
                           ),
                         ),
