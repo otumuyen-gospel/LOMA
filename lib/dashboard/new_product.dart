@@ -1,8 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:loma/dashboard/filepicker.dart';
 import 'package:regexed_validator/regexed_validator.dart';
+import 'package:currency_picker/currency_picker.dart';
 
 class NewProduct extends StatefulWidget {
   const NewProduct({super.key});
@@ -15,27 +15,13 @@ class _NewProductState extends State<NewProduct> {
   String description = "";
   String name = "";
   double price = 0;
-  String currency = "";
+  String currencySymbol = "";
+  String currencyCode = "Select your currency";
   String category = "";
   var picker = SystemFilePicker();
   Future future = Future(() => null);
   Image img = Image.asset("assets/cover.png");
-  selectionCategories(List<String> cats) {
-    return DropdownButtonFormField(
-      items: [
-        for (int i = 0; i < cats.length; i++)
-          DropdownMenuItem(
-            value: cats[i],
-            child: Text(cats[i]),
-            onTap: () {},
-          ),
-      ],
-      onChanged: (value) {
-        category = value as String;
-      },
-    );
-  }
-
+  List<String> categories = ["Wears", "Music", "Software"];
   responsiveViewWidth(context) {
     double width = 0;
     double viewportWidth = MediaQuery.of(context).size.width;
@@ -80,7 +66,7 @@ class _NewProductState extends State<NewProduct> {
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           title: const Text(
-            "Account",
+            "New Product",
             style: TextStyle(color: Colors.blue, fontFamily: 'verdana'),
           ),
           leading: Builder(builder: (context) {
@@ -493,8 +479,7 @@ class _NewProductState extends State<NewProduct> {
                                         color: Colors.grey, width: 1.2)),
                                   ),
                                   child: TextFormField(
-                                    keyboardType: TextInputType.phone,
-                                    initialValue: price.toString(),
+                                    keyboardType: TextInputType.number,
                                     decoration: const InputDecoration(
                                       prefixIcon: Icon(
                                         Icons.money,
@@ -522,15 +507,68 @@ class _NewProductState extends State<NewProduct> {
                               ],
                             ),
                           ),
+                          const Text("Select Product Category"),
                           Container(
                             width: responsiveViewWidth(context),
-                            margin: const EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.blue),
-                              color: Colors.blue,
+                            margin: const EdgeInsets.all(10),
+                            decoration: const BoxDecoration(
+                              border: Border.fromBorderSide(
+                                  BorderSide(color: Colors.grey, width: 1.2)),
                             ),
-                            child:
-                                selectionCategories(["wear", "shoes", "coths"]),
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton(
+                                value: category = categories[0],
+                                items: categories.map((String val) {
+                                  return DropdownMenuItem(
+                                    value: val,
+                                    child: Text(val),
+                                  );
+                                }).toList(),
+                                onChanged: (value) {
+                                  setState(() {
+                                    category = value as String;
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+
+                          //currency picker
+                          Container(
+                            width: responsiveViewWidth(context),
+                            margin: const EdgeInsets.all(10),
+                            decoration: const BoxDecoration(
+                              border: Border.fromBorderSide(
+                                  BorderSide(color: Colors.grey, width: 1.2)),
+                            ),
+                            child: OutlinedButton(
+                              style: OutlinedButton.styleFrom(
+                                  foregroundColor: Colors.blue,
+                                  backgroundColor: Colors.white,
+                                  padding: const EdgeInsets.all(20)),
+                              onPressed: () {
+                                showCurrencyPicker(
+                                  context: context,
+                                  showFlag: true,
+                                  showCurrencyCode: true,
+                                  showCurrencyName: true,
+                                  showSearchField: true,
+                                  searchHint: "select your currency",
+                                  onSelect: (Currency curr) {
+                                    setState(() {
+                                      currencySymbol = curr.symbol;
+                                      currencyCode = curr.code;
+                                    });
+                                  },
+                                );
+                              },
+                              child: Text(
+                                currencyCode,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue),
+                              ),
+                            ),
                           ),
                           Container(
                             width: responsiveViewWidth(context),

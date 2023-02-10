@@ -405,6 +405,7 @@ class _AccountState extends State<Account> {
                                       ),
                                       child: TextFormField(
                                         initialValue: name,
+                                        obscureText: true,
                                         decoration: const InputDecoration(
                                           prefixIcon: Icon(
                                             Icons.lock,
@@ -441,6 +442,7 @@ class _AccountState extends State<Account> {
                                       ),
                                       child: TextFormField(
                                         initialValue: name,
+                                        obscureText: true,
                                         decoration: const InputDecoration(
                                           prefixIcon: Icon(
                                             Icons.lock,

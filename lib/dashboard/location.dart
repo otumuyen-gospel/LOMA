@@ -58,7 +58,7 @@ class _LocationState extends State<Location> {
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           title: const Text(
-            "Store",
+            "Location",
             style: TextStyle(color: Colors.blue, fontFamily: 'verdana'),
           ),
           leading: Builder(builder: (context) {
