@@ -206,7 +206,9 @@ class _StoreState extends State<Store> {
                     color: Colors.blue,
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "/ProductListing");
+                },
               ),
               ListTile(
                 leading: const Icon(
@@ -219,7 +221,9 @@ class _StoreState extends State<Store> {
                     color: Colors.blue,
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "/Orders");
+                },
               ),
             ],
           ),

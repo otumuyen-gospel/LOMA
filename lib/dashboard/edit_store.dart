@@ -243,7 +243,9 @@ class _EditStoreState extends State<EditStore> {
                     color: Colors.blue,
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "/ProductListing");
+                },
               ),
               ListTile(
                 leading: const Icon(
@@ -256,7 +258,9 @@ class _EditStoreState extends State<EditStore> {
                     color: Colors.blue,
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "/Orders");
+                },
               ),
             ],
           ),

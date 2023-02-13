@@ -65,7 +65,7 @@ class Statistics {
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       overflow: TextOverflow.ellipsis,
-                      color: Colors.black)),
+                      color: Colors.grey)),
             ),
             Padding(
               padding: const EdgeInsets.all(10),

@@ -4,6 +4,9 @@ import 'package:loma/dashboard/dashboard.dart';
 import 'package:loma/dashboard/edit_store.dart';
 import 'package:loma/dashboard/location.dart';
 import 'package:loma/dashboard/new_product.dart';
+import 'package:loma/dashboard/orders.dart';
+import 'package:loma/dashboard/product_update.dart';
+import 'package:loma/dashboard/product_listing.dart';
 import 'package:loma/forgot_email.dart';
 import 'package:loma/forgot_newpassword.dart';
 import 'package:loma/forgot_verify.dart';
@@ -70,6 +73,9 @@ class Loma extends StatelessWidget {
         "/Account": (BuildContext ctx) => const Account(),
         "/Location": (BuildContext ctx) => const Location(),
         "/NewProduct": (BuildContext ctx) => const NewProduct(),
+        "/ProductUpdate": (BuildContext ctx) => const ProductUpdate(),
+        "/ProductListing": (BuildContext ctx) => const ProductListing(),
+        "/Orders": (BuildContext ctx) => const Orders(),
       },
     );
   }

@@ -1,27 +1,27 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:loma/dashboard/filepicker.dart';
 import 'package:regexed_validator/regexed_validator.dart';
+import 'package:currency_picker/currency_picker.dart';
 
-class Account extends StatefulWidget {
-  const Account({super.key});
+class ProductUpdate extends StatefulWidget {
+  const ProductUpdate({super.key});
   @override
-  State<Account> createState() => _AccountState();
+  State<ProductUpdate> createState() => _ProductUpdateState();
 }
 
-class _AccountState extends State<Account> {
+class _ProductUpdateState extends State<ProductUpdate> {
   final GlobalKey<FormState> _key = GlobalKey();
-  final GlobalKey<FormState> _key2 = GlobalKey();
   String description = "";
   String name = "";
-  String email = "";
-  String password = "";
-  String confirm = "";
+  double price = 0;
+  String currencySymbol = "";
+  String currencyCode = "Select your currency";
+  String category = "";
   var picker = SystemFilePicker();
   Future future = Future(() => null);
   Image img = Image.asset("assets/cover.png");
-
+  List<String> categories = ["Wears", "Music", "Software"];
   responsiveViewWidth(context) {
     double width = 0;
     double viewportWidth = MediaQuery.of(context).size.width;
@@ -66,7 +66,7 @@ class _AccountState extends State<Account> {
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           title: const Text(
-            "Account",
+            "Product update",
             style: TextStyle(color: Colors.blue, fontFamily: 'verdana'),
           ),
           leading: Builder(builder: (context) {
@@ -122,9 +122,7 @@ class _AccountState extends State<Account> {
                       color: Colors.grey,
                     ),
                   ),
-                  onTap: () {
-                    Navigator.pushNamed(context, "");
-                  },
+                  onTap: () {},
                 ),
               ),
               ListTile(
@@ -168,7 +166,9 @@ class _AccountState extends State<Account> {
                     color: Colors.blue,
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "/Account");
+                },
               ),
               const Divider(color: Colors.grey),
               ListTile(
@@ -197,9 +197,7 @@ class _AccountState extends State<Account> {
                     color: Colors.blue,
                   ),
                 ),
-                onTap: () {
-                  Navigator.pushNamed(context, "/NewProduct");
-                },
+                onTap: () {},
               ),
               ListTile(
                 leading: const Icon(
@@ -235,7 +233,6 @@ class _AccountState extends State<Account> {
           ),
         ),
         body: ListView(
-          clipBehavior: Clip.none,
           children: [
             Container(
               alignment: Alignment.center,
@@ -245,7 +242,7 @@ class _AccountState extends State<Account> {
                 color: Colors.blue,
               ),
               child: Text(
-                "MANAGE ACCOUNT",
+                "[Product Name]",
                 style: TextStyle(
                     color: Colors.white, fontSize: responsiveText(context)),
               ),
@@ -375,132 +372,6 @@ class _AccountState extends State<Account> {
                             ),
                           ),
                         ),
-
-                        // change password
-                        Form(
-                          key: _key2,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.all(10),
-                                child: Text("Change password",
-                                    style: TextStyle(
-                                        color: Colors.blue,
-                                        fontSize: 20,
-                                        letterSpacing: 3)),
-                              ),
-                              Container(
-                                margin:
-                                    const EdgeInsets.only(top: 5, bottom: 20),
-                                padding: const EdgeInsets.all(10),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      width: responsiveViewWidth(context),
-                                      margin: const EdgeInsets.all(10),
-                                      decoration: const BoxDecoration(
-                                        border: Border.fromBorderSide(
-                                            BorderSide(
-                                                color: Colors.grey,
-                                                width: 1.2)),
-                                      ),
-                                      child: TextFormField(
-                                        initialValue: name,
-                                        obscureText: true,
-                                        decoration: const InputDecoration(
-                                          prefixIcon: Icon(
-                                            Icons.lock,
-                                            color: Colors.blue,
-                                          ),
-                                          labelText: "New Password",
-                                          labelStyle:
-                                              TextStyle(color: Colors.grey),
-                                          border: InputBorder.none,
-                                        ),
-                                        onChanged: (String val) {
-                                          setState(() {
-                                            password = val;
-                                          });
-                                        },
-                                        validator: (String? val) {
-                                          if (val == null ||
-                                              val.isEmpty ||
-                                              !validator.password(val)) {
-                                            return "Enter Strong password";
-                                          }
-                                          return null;
-                                        },
-                                      ),
-                                    ),
-                                    Container(
-                                      width: responsiveViewWidth(context),
-                                      margin: const EdgeInsets.all(10),
-                                      decoration: const BoxDecoration(
-                                        border: Border.fromBorderSide(
-                                            BorderSide(
-                                                color: Colors.grey,
-                                                width: 1.2)),
-                                      ),
-                                      child: TextFormField(
-                                        initialValue: name,
-                                        obscureText: true,
-                                        decoration: const InputDecoration(
-                                          prefixIcon: Icon(
-                                            Icons.lock,
-                                            color: Colors.blue,
-                                          ),
-                                          labelText: "Confirm Password",
-                                          labelStyle:
-                                              TextStyle(color: Colors.grey),
-                                          border: InputBorder.none,
-                                        ),
-                                        onChanged: (String val) {
-                                          setState(() {
-                                            confirm = val;
-                                          });
-                                        },
-                                        validator: (String? val) {
-                                          if (val == null || val != password) {
-                                            return "confirm password";
-                                          }
-                                          return null;
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: responsiveViewWidth(context),
-                                margin: const EdgeInsets.all(20),
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.blue),
-                                  color: Colors.blue,
-                                ),
-                                child: OutlinedButton(
-                                  style: OutlinedButton.styleFrom(
-                                      foregroundColor: const Color(0xFFFFFFFF),
-                                      backgroundColor: Colors.transparent,
-                                      padding: const EdgeInsets.all(20)),
-                                  onPressed: () {
-                                    if (_key2.currentState?.validate() !=
-                                        null) {
-                                      _key2.currentState?.save();
-                                    }
-                                  },
-                                  child: const Text(
-                                    "Change Password",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -509,8 +380,7 @@ class _AccountState extends State<Account> {
                   Container(
                     alignment: Alignment.center,
                     width: responsiveViewWidth(context),
-                    //padding: const EdgeInsets.only(bottom: 20),
-                    clipBehavior: Clip.none,
+                    padding: const EdgeInsets.only(bottom: 20),
                     child: Form(
                       key: _key,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -519,14 +389,14 @@ class _AccountState extends State<Account> {
                         children: [
                           const Padding(
                             padding: EdgeInsets.all(10),
-                            child: Text("Edit Account",
+                            child: Text("Enter Product Details",
                                 style: TextStyle(
                                     color: Colors.blue,
                                     fontSize: 20,
                                     letterSpacing: 3)),
                           ),
                           const Text(
-                            "Account Details",
+                            "Product Details",
                             style: TextStyle(
                                 color: Colors.blueGrey,
                                 fontWeight: FontWeight.bold),
@@ -579,10 +449,10 @@ class _AccountState extends State<Account> {
                                     initialValue: name,
                                     decoration: const InputDecoration(
                                       prefixIcon: Icon(
-                                        Icons.business,
+                                        Icons.emoji_food_beverage,
                                         color: Colors.blue,
                                       ),
-                                      labelText: "Profile Name",
+                                      labelText: "Product Name",
                                       labelStyle: TextStyle(color: Colors.grey),
                                       border: InputBorder.none,
                                     ),
@@ -609,33 +479,102 @@ class _AccountState extends State<Account> {
                                         color: Colors.grey, width: 1.2)),
                                   ),
                                   child: TextFormField(
-                                    keyboardType: TextInputType.phone,
-                                    initialValue: email,
+                                    keyboardType: TextInputType.number,
                                     decoration: const InputDecoration(
                                       prefixIcon: Icon(
-                                        Icons.phone,
+                                        Icons.money,
                                         color: Colors.blue,
                                       ),
-                                      labelText: "Email",
+                                      labelText: "Price",
                                       labelStyle: TextStyle(color: Colors.grey),
                                       border: InputBorder.none,
                                     ),
                                     onChanged: (String val) {
                                       setState(() {
-                                        email = val;
+                                        price = val.trim() as double;
                                       });
                                     },
                                     validator: (String? val) {
                                       if (val == null ||
                                           val.isEmpty ||
-                                          !validator.email(val)) {
-                                        return "Enter Email";
+                                          (val.trim() as double).isNaN) {
+                                        return "Enter Price";
                                       }
                                       return null;
                                     },
                                   ),
                                 ),
                               ],
+                            ),
+                          ),
+                          const Text("Select Product Category"),
+                          Container(
+                            width: responsiveViewWidth(context),
+                            margin: const EdgeInsets.only(
+                                top: 0, bottom: 10, right: 20, left: 20),
+                            decoration: const BoxDecoration(
+                              border: Border.fromBorderSide(
+                                  BorderSide(color: Colors.grey, width: 1.2)),
+                            ),
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButtonFormField(
+                                value: category = categories[0],
+                                items: categories.map((String val) {
+                                  return DropdownMenuItem(
+                                    value: val,
+                                    child: Text(val),
+                                  );
+                                }).toList(),
+                                onSaved: (val) {
+                                  setState(() {
+                                    category = val.toString();
+                                  });
+                                },
+                                onChanged: (value) {
+                                  setState(() {
+                                    category = value.toString();
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+
+                          //currency picker
+                          Container(
+                            width: responsiveViewWidth(context),
+                            margin: const EdgeInsets.only(
+                                top: 0, bottom: 10, right: 20, left: 20),
+                            decoration: const BoxDecoration(
+                              border: Border.fromBorderSide(
+                                  BorderSide(color: Colors.grey, width: 1.2)),
+                            ),
+                            child: OutlinedButton(
+                              style: OutlinedButton.styleFrom(
+                                  foregroundColor: Colors.blue,
+                                  backgroundColor: Colors.white,
+                                  padding: const EdgeInsets.all(20)),
+                              onPressed: () {
+                                showCurrencyPicker(
+                                  context: context,
+                                  showFlag: true,
+                                  showCurrencyCode: true,
+                                  showCurrencyName: true,
+                                  showSearchField: true,
+                                  searchHint: "select your currency",
+                                  onSelect: (Currency curr) {
+                                    setState(() {
+                                      currencySymbol = curr.symbol;
+                                      currencyCode = curr.code;
+                                    });
+                                  },
+                                );
+                              },
+                              child: Text(
+                                currencyCode,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue),
+                              ),
                             ),
                           ),
                           Container(
@@ -656,46 +595,12 @@ class _AccountState extends State<Account> {
                                 }
                               },
                               child: const Text(
-                                "Update",
+                                "Update Product",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white),
                               ),
                             ),
-                          ),
-                          Container(
-                            width: responsiveViewWidth(context),
-                            height: MediaQuery.of(context).size.height / 4,
-                            clipBehavior: Clip.none,
-                            alignment: Alignment.center,
-                            margin: const EdgeInsets.only(
-                              top: 20,
-                              bottom: 20,
-                              left: 20,
-                              right: 20,
-                            ),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.red, width: 0.5),
-                            ),
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.all(10),
-                                    child: Text(
-                                        "I don't want to operate this account anymore, delete my account"),
-                                  ),
-                                  ElevatedButton(
-                                    style: const ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStatePropertyAll(Colors.red),
-                                      foregroundColor: MaterialStatePropertyAll(
-                                          Colors.white),
-                                    ),
-                                    onPressed: () {},
-                                    child: const Text("DELETE ACCOUNT"),
-                                  )
-                                ]),
                           ),
                         ],
                       ),

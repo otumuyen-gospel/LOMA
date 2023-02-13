@@ -174,7 +174,9 @@ class _DashboardState extends State<Dashboard> {
                     color: Colors.blue,
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "/ProductListing");
+                },
               ),
               ListTile(
                 leading: const Icon(
@@ -187,7 +189,9 @@ class _DashboardState extends State<Dashboard> {
                     color: Colors.blue,
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "/Orders");
+                },
               ),
             ],
           ),

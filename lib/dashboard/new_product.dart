@@ -123,7 +123,7 @@ class _NewProductState extends State<NewProduct> {
                     ),
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, "");
+                    Navigator.pushNamed(context, "/Account");
                   },
                 ),
               ),
@@ -199,9 +199,7 @@ class _NewProductState extends State<NewProduct> {
                     color: Colors.blue,
                   ),
                 ),
-                onTap: () {
-                  Navigator.pushNamed(context, "");
-                },
+                onTap: () {},
               ),
               ListTile(
                 leading: const Icon(
@@ -214,7 +212,9 @@ class _NewProductState extends State<NewProduct> {
                     color: Colors.blue,
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "/ProductListing");
+                },
               ),
               ListTile(
                 leading: const Icon(
@@ -227,7 +227,9 @@ class _NewProductState extends State<NewProduct> {
                     color: Colors.blue,
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "/Orders");
+                },
               ),
             ],
           ),
@@ -510,13 +512,14 @@ class _NewProductState extends State<NewProduct> {
                           const Text("Select Product Category"),
                           Container(
                             width: responsiveViewWidth(context),
-                            margin: const EdgeInsets.all(10),
+                            margin: const EdgeInsets.only(
+                                top: 0, bottom: 10, right: 20, left: 20),
                             decoration: const BoxDecoration(
                               border: Border.fromBorderSide(
                                   BorderSide(color: Colors.grey, width: 1.2)),
                             ),
                             child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
+                              child: DropdownButtonFormField(
                                 value: category = categories[0],
                                 items: categories.map((String val) {
                                   return DropdownMenuItem(
@@ -524,9 +527,14 @@ class _NewProductState extends State<NewProduct> {
                                     child: Text(val),
                                   );
                                 }).toList(),
-                                onChanged: (value) {
+                                onSaved: (val) {
                                   setState(() {
-                                    category = value as String;
+                                    category = val.toString();
+                                  });
+                                },
+                                onChanged: (val) {
+                                  setState(() {
+                                    category = val.toString();
                                   });
                                 },
                               ),
@@ -536,7 +544,8 @@ class _NewProductState extends State<NewProduct> {
                           //currency picker
                           Container(
                             width: responsiveViewWidth(context),
-                            margin: const EdgeInsets.all(10),
+                            margin: const EdgeInsets.only(
+                                top: 0, bottom: 10, right: 20, left: 20),
                             decoration: const BoxDecoration(
                               border: Border.fromBorderSide(
                                   BorderSide(color: Colors.grey, width: 1.2)),
