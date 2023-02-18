@@ -172,7 +172,7 @@ class Category {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, "/ProductUpdate");
+                      Navigator.popAndPushNamed(context, "/ProductUpdate");
                     },
                     child: const Text("Update"),
                   ),

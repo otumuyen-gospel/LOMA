@@ -18,7 +18,7 @@ class Statistics {
   card(url, route, name, icon, number) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, route);
+        Navigator.popAndPushNamed(context, route);
       },
       child: Container(
         width: responsiveViewWidth(),

@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:loma/dashboard/filepicker.dart';
 import 'package:regexed_validator/regexed_validator.dart';
+import 'package:loma/dashboard/dashboard_drawer.dart';
+import 'package:loma/dashboard/logout.dart';
 
 class CreateStore extends StatefulWidget {
   const CreateStore({super.key});
@@ -86,9 +88,17 @@ class _CreateStoreState extends State<CreateStore> {
     }
   }
 
+  Future<Object> _pushPage(BuildContext context) async {
+    return Navigator.popAndPushNamed(context, "/Store");
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return WillPopScope(
+      onWillPop: () async {
+        _pushPage(context);
+        return true;
+      },
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -112,7 +122,7 @@ class _CreateStoreState extends State<CreateStore> {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, "/DashboardSearch");
+                Navigator.popAndPushNamed(context, "/DashboardSearch");
               },
               icon: const Icon(
                 Icons.search,
@@ -121,7 +131,7 @@ class _CreateStoreState extends State<CreateStore> {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, "/Product");
+                logout(context);
               },
               style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(Colors.blue),
@@ -131,140 +141,7 @@ class _CreateStoreState extends State<CreateStore> {
             ),
           ],
         ),
-        drawer: Drawer(
-          child: ListView(
-            children: <Widget>[
-              DrawerHeader(
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: Image.asset("assets/1.jpg").image,
-                  ),
-                  title: const Text(
-                    "Profile Name",
-                    style: TextStyle(
-                      color: Colors.blue,
-                    ),
-                  ),
-                  subtitle: const Text(
-                    "Profile description",
-                    style: TextStyle(
-                      color: Colors.grey,
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.pushNamed(context, "/Account");
-                  },
-                ),
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.dashboard,
-                  color: Colors.blue,
-                ),
-                title: const Text(
-                  "Dashboard",
-                  style: TextStyle(
-                    color: Colors.blue,
-                  ),
-                ),
-                onTap: () {
-                  Navigator.pushNamed(context, "/Dashboard");
-                },
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.location_on,
-                  color: Colors.blue,
-                ),
-                title: const Text(
-                  "Manage Location",
-                  style: TextStyle(
-                    color: Colors.blue,
-                  ),
-                ),
-                onTap: () {
-                  Navigator.pushNamed(context, "/Location");
-                },
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.manage_accounts,
-                  color: Colors.blue,
-                ),
-                title: const Text(
-                  "Manage Account",
-                  style: TextStyle(
-                    color: Colors.blue,
-                  ),
-                ),
-                onTap: () {
-                  Navigator.pushNamed(context, "/Account");
-                },
-              ),
-              const Divider(color: Colors.grey),
-              ListTile(
-                leading: const Icon(
-                  Icons.store,
-                  color: Colors.blue,
-                ),
-                title: const Text(
-                  "Your Store",
-                  style: TextStyle(
-                    color: Colors.blue,
-                  ),
-                ),
-                onTap: () {
-                  Navigator.pushNamed(context, "/Store");
-                },
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.emoji_food_beverage,
-                  color: Colors.blue,
-                ),
-                title: const Text(
-                  "New Product",
-                  style: TextStyle(
-                    color: Colors.blue,
-                  ),
-                ),
-                onTap: () {
-                  Navigator.pushNamed(context, "/NewProduct");
-                },
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.list,
-                  color: Colors.blue,
-                ),
-                title: const Text(
-                  "Manage Products List",
-                  style: TextStyle(
-                    color: Colors.blue,
-                  ),
-                ),
-                onTap: () {
-                  Navigator.pushNamed(context, "/ProductListing");
-                },
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.book,
-                  color: Colors.blue,
-                ),
-                title: const Text(
-                  "Orders",
-                  style: TextStyle(
-                    color: Colors.blue,
-                  ),
-                ),
-                onTap: () {
-                  Navigator.pushNamed(context, "/Orders");
-                },
-              ),
-            ],
-          ),
-        ),
+        drawer: getDrawer(context),
         body: ListView(
           children: [
             Container(

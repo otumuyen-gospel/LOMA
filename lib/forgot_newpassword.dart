@@ -11,19 +11,39 @@ class _ForgotChangeState extends State<ForgotChange> {
   final GlobalKey<FormState> _key = GlobalKey();
   String confirm = "";
   String password = "";
+  Future<Object> _pushPage(BuildContext context) async {
+    return Navigator.popAndPushNamed(context, "/Login");
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return WillPopScope(
+      onWillPop: () async {
+        _pushPage(context);
+        return true;
+      },
+      child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: const Color.fromRGBO(255, 255, 255, 0.95),
             // Here we take the value from the MyHomePage object that was created by
             // the App.build method, and use it to set our appbar title.
-            title: const Text("Change Password", style:  TextStyle(color: Colors.blue),),
-            leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: const Icon(Icons.arrow_back, color: Colors.blue,),),
+            title: const Text(
+              "Change Password",
+              style: TextStyle(color: Colors.blue),
+            ),
+            leading: IconButton(
+              onPressed: () {
+                Navigator.popAndPushNamed(context, "/Login");
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.blue,
+              ),
+            ),
           ),
           body: ListView(
-            padding: const EdgeInsets.only(top: 100,bottom: 50),
+            padding: const EdgeInsets.only(top: 100, bottom: 50),
             children: [
               Center(
                 child: Form(
@@ -35,13 +55,17 @@ class _ForgotChangeState extends State<ForgotChange> {
                       Container(
                         alignment: Alignment.center,
                         height: 80,
-                        child:Image.asset("assets/logo.png", fit: BoxFit.contain,),
+                        child: Image.asset(
+                          "assets/logo.png",
+                          fit: BoxFit.contain,
+                        ),
                       ),
                       Container(
                         width: 250,
                         margin: const EdgeInsets.all(20),
                         decoration: const BoxDecoration(
-                          border: Border.fromBorderSide(BorderSide(color: Colors.grey,width: 1.2)),
+                          border: Border.fromBorderSide(
+                              BorderSide(color: Colors.grey, width: 1.2)),
                         ),
                         child: TextFormField(
                           initialValue: password,
@@ -52,16 +76,20 @@ class _ForgotChangeState extends State<ForgotChange> {
                             prefixIconColor: Colors.blue,
                             hintStyle: TextStyle(color: Colors.grey),
                             labelText: "NEW PASSWORD",
-                            labelStyle: TextStyle(color: Colors.grey ,fontWeight: FontWeight.bold),
+                            labelStyle: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold),
                             border: InputBorder.none,
                           ),
-                          onChanged: (String val){
+                          onChanged: (String val) {
                             setState(() {
                               password = val;
                             });
                           },
-                          validator: (String? val){
-                            if(val == null || !validator.password(val) || val != confirm){
+                          validator: (String? val) {
+                            if (val == null ||
+                                !validator.password(val) ||
+                                val != confirm) {
                               return "uppercase,lowercase,numbers,symbols";
                             }
                             return null;
@@ -72,7 +100,8 @@ class _ForgotChangeState extends State<ForgotChange> {
                         width: 250,
                         margin: const EdgeInsets.all(20),
                         decoration: const BoxDecoration(
-                          border: Border.fromBorderSide(BorderSide(color: Colors.grey,width: 1.2)),
+                          border: Border.fromBorderSide(
+                              BorderSide(color: Colors.grey, width: 1.2)),
                         ),
                         child: TextFormField(
                           initialValue: confirm,
@@ -83,16 +112,18 @@ class _ForgotChangeState extends State<ForgotChange> {
                             prefixIconColor: Colors.blue,
                             hintStyle: TextStyle(color: Colors.grey),
                             labelText: "CONFIRM PASSWORD",
-                            labelStyle: TextStyle(color: Colors.grey ,fontWeight: FontWeight.bold),
+                            labelStyle: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold),
                             border: InputBorder.none,
                           ),
-                          onChanged: (String val){
+                          onChanged: (String val) {
                             setState(() {
                               confirm = val;
                             });
                           },
-                          validator: (String? val){
-                            if(val == null || val.isEmpty || val != password){
+                          validator: (String? val) {
+                            if (val == null || val.isEmpty || val != password) {
                               return "Enter your password again";
                             }
                             return null;
@@ -107,22 +138,43 @@ class _ForgotChangeState extends State<ForgotChange> {
                           color: Colors.blue,
                         ),
                         child: OutlinedButton(
-                          style: OutlinedButton.styleFrom(foregroundColor: const Color(0xFFFFFFFF),
-                              backgroundColor:Colors.transparent, padding: const EdgeInsets.all(20)),
-                          onPressed: (){
-                            if(_key.currentState?.validate() != null){
+                          style: OutlinedButton.styleFrom(
+                              foregroundColor: const Color(0xFFFFFFFF),
+                              backgroundColor: Colors.transparent,
+                              padding: const EdgeInsets.all(20)),
+                          onPressed: () {
+                            if (_key.currentState?.validate() != null) {
                               _key.currentState?.save();
-                              Navigator.pushNamed(context, "/Login");
+                              Navigator.popAndPushNamed(context, "/Login");
                             }
                           },
-                          child: const Text("CHANGE", style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
+                          child: const Text(
+                            "CHANGE",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
                         ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          TextButton(onPressed: (){Navigator.pushNamed(context, "/Signup");}, child: const Text("Create Account",style: TextStyle(color: Colors.blue),)),
-                          TextButton(onPressed: (){Navigator.pushNamed(context, "/Login");}, child: const Text("Login Instead?",style: TextStyle(color: Colors.blue),)),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.popAndPushNamed(context, "/Signup");
+                              },
+                              child: const Text(
+                                "Create Account",
+                                style: TextStyle(color: Colors.blue),
+                              )),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.popAndPushNamed(context, "/Login");
+                              },
+                              child: const Text(
+                                "Login Instead?",
+                                style: TextStyle(color: Colors.blue),
+                              )),
                         ],
                       ),
                     ],
@@ -132,7 +184,7 @@ class _ForgotChangeState extends State<ForgotChange> {
             ],
           ),
         ),
+      ),
     );
   }
 }
-

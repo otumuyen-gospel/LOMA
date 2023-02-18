@@ -50,7 +50,7 @@ class ProductCard {
   card() {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, "/Order");
+        Navigator.popAndPushNamed(context, "/Order");
       }, //take user to order page
       child: Container(
         width: responsiveViewWidth(margin),

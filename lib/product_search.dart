@@ -10,25 +10,46 @@ class _ProductSearchState extends State<ProductSearch> {
   final GlobalKey<FormState> _key = GlobalKey();
   String searchTerm = "";
   String errorMsg = "";
-  responsiveViewWidth(){
+  responsiveViewWidth() {
     double viewportWidth = MediaQuery.of(context).size.width;
-    if(viewportWidth > 700){
+    if (viewportWidth > 700) {
       return viewportWidth * 0.4;
-    }else{
+    } else {
       return viewportWidth * 0.7;
     }
   }
+
+  Future<Object> _pushPage(BuildContext context) async {
+    return Navigator.popAndPushNamed(context, "/Product");
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return WillPopScope(
+      onWillPop: () async {
+        _pushPage(context);
+        return true;
+      },
+      child: SafeArea(
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: Colors.white,
             // Here we take the value from the MyHomePage object that was created by
             // the App.build method, and use it to set our appbar title.
-            title: const Text("Product Search", style:  TextStyle(color: Colors.blue),),
-            leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: const Icon(Icons.arrow_back, color: Colors.blue,),),
+            title: const Text(
+              "Product Search",
+              style: TextStyle(color: Colors.blue),
+            ),
+            leading: IconButton(
+              onPressed: () {
+                Navigator.popAndPushNamed(context, "/Product");
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.blue,
+              ),
+            ),
           ),
           body: Center(
             child: Form(
@@ -36,7 +57,11 @@ class _ProductSearchState extends State<ProductSearch> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(errorMsg, style: const TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),),
+                  Text(
+                    errorMsg,
+                    style: const TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.bold),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -45,8 +70,10 @@ class _ProductSearchState extends State<ProductSearch> {
                         padding: const EdgeInsets.only(left: 5, right: 5),
                         width: responsiveViewWidth(),
                         decoration: const BoxDecoration(
-                          border: Border.fromBorderSide(BorderSide(color: Colors.blue,width: 1.2)),
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(10),
+                          border: Border.fromBorderSide(
+                              BorderSide(color: Colors.blue, width: 1.2)),
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
                               bottomLeft: Radius.circular(10)),
                         ),
                         child: TextFormField(
@@ -57,17 +84,17 @@ class _ProductSearchState extends State<ProductSearch> {
                             hintStyle: TextStyle(color: Colors.white),
                             border: InputBorder.none,
                           ),
-                          onChanged: (String val){
+                          onChanged: (String val) {
                             setState(() {
                               searchTerm = val;
                             });
                           },
-                          validator: (String? val){
-                            if(val == null || val.isEmpty){
+                          validator: (String? val) {
+                            if (val == null || val.isEmpty) {
                               setState(() {
                                 errorMsg = "Please Enter Your Search Term";
                               });
-                              return;//to set the error text of a text form field return an error message here
+                              return; //to set the error text of a text form field return an error message here
                             }
                             return null;
                           },
@@ -79,16 +106,20 @@ class _ProductSearchState extends State<ProductSearch> {
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.blue),
                           color: Colors.blue,
-                          borderRadius: const BorderRadius.only(topRight: Radius.circular(10),
+                          borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(10),
                               bottomRight: Radius.circular(10)),
                         ),
                         child: IconButton(
-                          onPressed: (){
-                            if(_key.currentState?.validate() != null){
+                          onPressed: () {
+                            if (_key.currentState?.validate() != null) {
                               _key.currentState?.save();
                             }
                           },
-                          icon: const Icon(Icons.search,color: Colors.white,),
+                          icon: const Icon(
+                            Icons.search,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],
@@ -98,8 +129,7 @@ class _ProductSearchState extends State<ProductSearch> {
             ),
           ),
         ),
+      ),
     );
-
   }
 }
-
