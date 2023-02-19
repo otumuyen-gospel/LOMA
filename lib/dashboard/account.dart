@@ -115,7 +115,6 @@ class _AccountState extends State<Account> {
           ),
           drawer: getDrawer(context),
           body: ListView(
-            clipBehavior: Clip.none,
             children: [
               Container(
                 alignment: Alignment.center,
@@ -133,7 +132,6 @@ class _AccountState extends State<Account> {
               Container(
                 clipBehavior: Clip.none,
                 child: Wrap(
-                  clipBehavior: Clip.none,
                   direction: Axis.horizontal,
                   children: [
                     //Left side
@@ -392,8 +390,6 @@ class _AccountState extends State<Account> {
                     Container(
                       alignment: Alignment.center,
                       width: responsiveViewWidth(context),
-                      //padding: const EdgeInsets.only(bottom: 20),
-                      clipBehavior: Clip.none,
                       child: Form(
                         key: _key,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -551,8 +547,6 @@ class _AccountState extends State<Account> {
                             ),
                             Container(
                               width: responsiveViewWidth(context),
-                              height: MediaQuery.of(context).size.height / 4,
-                              clipBehavior: Clip.none,
                               alignment: Alignment.center,
                               margin: const EdgeInsets.only(
                                 top: 20,
@@ -560,12 +554,8 @@ class _AccountState extends State<Account> {
                                 left: 20,
                                 right: 20,
                               ),
-                              decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.red, width: 0.5),
-                              ),
                               child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     const Padding(
                                       padding: EdgeInsets.all(10),

@@ -43,7 +43,7 @@ class _DashboardSearchState extends State<DashboardSearch> {
             ),
             leading: IconButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.popAndPushNamed(context, "/Dashboard");
               },
               icon: const Icon(
                 Icons.arrow_back,

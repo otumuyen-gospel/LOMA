@@ -23,7 +23,8 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        return logout(context);
+        logout(context);
+        return false;
       },
       child: SafeArea(
         child: Scaffold(

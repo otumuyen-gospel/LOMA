@@ -22,6 +22,7 @@ getDrawer(BuildContext context) {
               ),
             ),
             onTap: () {
+              Navigator.of(context).pop(false); //close sidebar
               if (ModalRoute.of(context)?.settings.name != "/Account") {
                 Navigator.popAndPushNamed(context, "/Account");
               }
@@ -40,6 +41,7 @@ getDrawer(BuildContext context) {
             ),
           ),
           onTap: () {
+            Navigator.of(context).pop(false); //close sidebar
             if (ModalRoute.of(context)?.settings.name != "/Dashboard") {
               Navigator.popAndPushNamed(context, "/Dashboard");
             } else {
@@ -59,6 +61,7 @@ getDrawer(BuildContext context) {
             ),
           ),
           onTap: () {
+            Navigator.of(context).pop(false); //close sidebar
             if (ModalRoute.of(context)?.settings.name != "/Location") {
               Navigator.popAndPushNamed(context, "/Location");
             }
@@ -76,6 +79,7 @@ getDrawer(BuildContext context) {
             ),
           ),
           onTap: () {
+            Navigator.of(context).pop(false); //close sidebar
             if (ModalRoute.of(context)?.settings.name != "/Account") {
               Navigator.popAndPushNamed(context, "/Account");
             }
@@ -94,6 +98,7 @@ getDrawer(BuildContext context) {
             ),
           ),
           onTap: () {
+            Navigator.of(context).pop(false); //close sidebar
             if (ModalRoute.of(context)?.settings.name != "/Store") {
               Navigator.popAndPushNamed(context, "/Store");
             }
@@ -111,6 +116,7 @@ getDrawer(BuildContext context) {
             ),
           ),
           onTap: () {
+            Navigator.of(context).pop(false); //close sidebar
             if (ModalRoute.of(context)?.settings.name != "/NewProduct") {
               Navigator.popAndPushNamed(context, "/NewProduct");
             }
@@ -128,6 +134,7 @@ getDrawer(BuildContext context) {
             ),
           ),
           onTap: () {
+            Navigator.of(context).pop(false); //close sidebar
             if (ModalRoute.of(context)?.settings.name != "/ProductListing") {
               Navigator.popAndPushNamed(context, "/ProductListing");
             }
@@ -145,6 +152,7 @@ getDrawer(BuildContext context) {
             ),
           ),
           onTap: () {
+            Navigator.of(context).pop(false); //close sidebar
             if (ModalRoute.of(context)?.settings.name != "/Orders") {
               Navigator.popAndPushNamed(context, "/Orders");
             }
