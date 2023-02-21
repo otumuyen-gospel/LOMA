@@ -21,15 +21,11 @@ class ProductCard {
       //from system file
       img = Image.file(
         File(url),
-        height: 150,
-        width: 300,
       );
     } else {
       //from app
       img = Image.asset(
         url,
-        height: 150,
-        width: 300,
       );
     }
   }
@@ -55,20 +51,24 @@ class ProductCard {
       child: Container(
         width: responsiveViewWidth(margin),
         margin: EdgeInsets.only(
-            left: (margin / 2), right: (margin / 2), bottom: 20),
-        alignment: Alignment.topLeft,
+          left: (margin / 2),
+          right: (margin / 2),
+          bottom: 20,
+        ),
+        alignment: Alignment.topCenter,
         padding: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: Colors.grey, width: 1),
+          border: Border.all(color: Colors.grey, width: 0.1),
           color: Colors.white,
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: responsiveViewWidth(margin) / 1.5,
+              height: responsiveViewWidth(margin),
+              width: responsiveViewWidth(margin),
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20),
@@ -77,7 +77,7 @@ class ProductCard {
                   image: Image.asset(
                     url,
                   ).image,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                 ),
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-class ProductSimilar{
+
+class ProductSimilar {
   late BuildContext context;
   ProductSimilar(this.context);
   responsiveViewWidth(double margin) {
@@ -7,57 +8,74 @@ class ProductSimilar{
     double viewportWidth = MediaQuery.of(context).size.width;
     if (viewportWidth > 1000) {
       width = (viewportWidth / 4) - margin;
-    } else if(viewportWidth > 700){
+    } else if (viewportWidth > 700) {
       width = (viewportWidth / 3) - margin;
-    }else if(viewportWidth > 400){
+    } else if (viewportWidth > 400) {
       width = (viewportWidth / 2) - margin;
-    }else{
+    } else {
       width = viewportWidth;
     }
     return width;
   }
-  responsiveMargin(margin){
+
+  responsiveMargin(margin) {
     double viewportWidth = MediaQuery.of(context).size.width;
-    if(viewportWidth > 400){
+    if (viewportWidth > 400) {
       return margin / 2;
-    }else{
+    } else {
       return 0.0;
     }
   }
-  card(url, description){
+
+  card(url, description) {
     double margin = 20;
-      return InkWell(
-        onTap: (){},
-        child: Container(
-          width: responsiveViewWidth(margin),
-          margin: EdgeInsets.only(left: responsiveMargin(margin),right: responsiveMargin(margin),top: 40,bottom: 40),
-          child: Column(
-            children: [
-              Container(
-                height: responsiveViewWidth(margin),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: Image.asset(url,).image,
-                    fit: BoxFit.cover,
-                  ),
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        width: responsiveViewWidth(margin),
+        margin: EdgeInsets.only(
+            left: responsiveMargin(margin),
+            right: responsiveMargin(margin),
+            top: 40,
+            bottom: 40),
+        child: Column(
+          children: [
+            Container(
+              height: responsiveViewWidth(margin),
+              width: responsiveViewWidth(margin),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: Image.asset(
+                    url,
+                  ).image,
+                  fit: BoxFit.contain,
                 ),
               ),
-              Padding(padding: const EdgeInsets.all(5),
-                child:Text(description, style:const TextStyle(color: Colors.blueGrey),),),
-            ],
-          ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(5),
+              child: Text(
+                description,
+                style: const TextStyle(color: Colors.blueGrey),
+              ),
+            ),
+          ],
         ),
-      );
-    }
-    show(){
-      return Wrap(
-        clipBehavior: Clip.none,
-        direction: Axis.horizontal,
-        children: [
-          for(int i =1; i<= 10; i++)
-            card("assets/$i.jpg", "Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi egestas lectus non diam interdum ullamcorper",),
-        ],
-      );
-    }
+      ),
+    );
+  }
 
+  show() {
+    return Wrap(
+      clipBehavior: Clip.none,
+      direction: Axis.horizontal,
+      children: [
+        for (int i = 1; i <= 10; i++)
+          card(
+            "assets/$i.jpg",
+            "Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi egestas lectus non diam interdum ullamcorper",
+          ),
+      ],
+    );
+  }
 }

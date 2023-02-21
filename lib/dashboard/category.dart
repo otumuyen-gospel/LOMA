@@ -102,7 +102,7 @@ class Category {
           Text(
             category.toUpperCase(),
             style: TextStyle(
-                fontSize: responsiveText(context), fontWeight: FontWeight.w100),
+                fontSize: responsiveText(context), fontWeight: FontWeight.w400),
           ),
           const Divider(
             thickness: 0.7,
@@ -125,14 +125,15 @@ class Category {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: Colors.grey, width: 1),
+          border: Border.all(color: Colors.grey, width: 0.1),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: responsiveViewWidth() / 2,
+              height: responsiveViewWidth(),
+              width: responsiveViewWidth(),
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20),
@@ -141,7 +142,7 @@ class Category {
                   image: Image.asset(
                     url,
                   ).image,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                 ),
               ),
             ),
