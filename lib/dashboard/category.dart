@@ -102,7 +102,7 @@ class Category {
           Text(
             category.toUpperCase(),
             style: TextStyle(
-                fontSize: responsiveText(context), fontWeight: FontWeight.w400),
+                fontSize: responsiveText(context), fontWeight: FontWeight.w300),
           ),
           const Divider(
             thickness: 0.7,

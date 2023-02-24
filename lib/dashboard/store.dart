@@ -188,7 +188,11 @@ class _StoreState extends State<Store> {
                             direction: Axis.horizontal,
                             alignment: WrapAlignment.center,
                             children: [
-                              for (String tags in ["eggs", "palte", "clothes"])
+                              for (String tags in [
+                                "Business",
+                                "Establishment",
+                                "clothes"
+                              ])
                                 Padding(
                                   padding: const EdgeInsets.all(10),
                                   child: Chip(

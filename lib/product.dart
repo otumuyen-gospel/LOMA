@@ -108,35 +108,30 @@ class _ProductState extends State<Product> {
               Container(
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.only(top: 50, bottom: 50),
-                decoration: const BoxDecoration(
-                  color: Colors.blue,
+                height: MediaQuery.of(context).size.height / 3,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20)),
+                  image: DecorationImage(
+                    image: Image.asset(
+                      "assets/m1.jpg",
+                    ).image,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                child: Wrap(
-                  direction: Axis.vertical,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  spacing: 30,
-                  children: [
-                    Text(
-                      "WELCOME TO LOMA",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: responsiveText(context)),
-                    ),
-                    ElevatedButton(
-                      style: const ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll(Colors.white),
-                        foregroundColor: MaterialStatePropertyAll(Colors.grey),
-                      ),
-                      onPressed: () {
-                        Navigator.popAndPushNamed(context, "/Signup");
-                      },
-                      child: Text(
-                        "JOIN US",
-                        style: TextStyle(fontSize: responsiveText(context)),
-                      ),
-                    )
-                  ],
+                child: Container(
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height / 3,
+                  color: Color.fromRGBO(255, 255, 255, 0.8),
+                  child: Text(
+                    "WELCOME TO LOMA",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w300,
+                        color: Colors.blueGrey,
+                        fontSize: responsiveText(context)),
+                  ),
                 ),
               ),
               Container(
@@ -148,6 +143,7 @@ class _ProductState extends State<Product> {
                   style: TextStyle(
                     color: Colors.blue,
                     fontSize: 18,
+                    fontWeight: FontWeight.w300,
                   ),
                   textAlign: TextAlign.center,
                 ),

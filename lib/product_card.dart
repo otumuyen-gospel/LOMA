@@ -34,11 +34,13 @@ class ProductCard {
     double width = 0;
     double viewportWidth = MediaQuery.of(context).size.width;
     if (viewportWidth > 1000) {
+      width = (viewportWidth / 4) - margin;
+    } else if (viewportWidth > 700) {
       width = (viewportWidth / 3) - margin;
     } else if (viewportWidth > 500) {
       width = (viewportWidth / 2) - margin;
     } else {
-      width = viewportWidth;
+      width = (viewportWidth / 1) - margin;
     }
     return width;
   }
@@ -79,14 +81,6 @@ class ProductCard {
                   ).image,
                   fit: BoxFit.contain,
                 ),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(10),
-              child: Icon(
-                Icons.shopping_cart,
-                color: Colors.grey,
-                size: 30,
               ),
             ),
             Padding(

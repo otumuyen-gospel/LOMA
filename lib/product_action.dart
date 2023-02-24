@@ -77,6 +77,22 @@ class ProductActions {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
+              child: TextButton.icon(
+                onPressed: () {},
+                icon: Icon(Icons.money),
+                label: Text("\$1000"),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: TextButton.icon(
+                onPressed: () {},
+                icon: Icon(Icons.location_on),
+                label: Text("IPAJA"),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
               child: ElevatedButton.icon(
                 onPressed: () {},
                 icon: const Icon(Icons.thumb_up_sharp, color: Colors.blue),

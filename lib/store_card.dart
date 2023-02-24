@@ -4,22 +4,22 @@ class StoreCard {
   late String url;
   late String name;
   late String description;
-  late List<String> keyword;
   late String location;
   late Image img;
   BuildContext context;
   double margin = 20;
-  StoreCard(this.url, this.name, this.description, this.keyword, this.location,
-      this.context);
+  StoreCard(this.url, this.name, this.description, this.location, this.context);
   responsiveViewWidth(double margin) {
     double width = 0;
     double viewportWidth = MediaQuery.of(context).size.width;
     if (viewportWidth > 1000) {
+      width = (viewportWidth / 4) - margin;
+    } else if (viewportWidth > 700) {
       width = (viewportWidth / 3) - margin;
     } else if (viewportWidth > 500) {
       width = (viewportWidth / 2) - margin;
     } else {
-      width = viewportWidth;
+      width = (viewportWidth / 1) - margin;
     }
     return width;
   }
@@ -90,23 +90,6 @@ class StoreCard {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-            Wrap(
-              direction: Axis.horizontal,
-              alignment: WrapAlignment.center,
-              children: [
-                for (String tags in keyword)
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: Chip(
-                      label: Text(
-                        tags,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                      backgroundColor: Colors.blueGrey,
-                    ),
-                  ),
-              ],
             ),
           ],
         ),
