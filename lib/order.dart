@@ -89,7 +89,7 @@ class _OrderState extends State<Order> {
                 padding: const EdgeInsets.only(top: 3, bottom: 5, left: 5),
                 child: Text(
                   "This Store",
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
               ),
               ProductMore().show(),
@@ -98,7 +98,7 @@ class _OrderState extends State<Order> {
                 padding: const EdgeInsets.only(top: 3, bottom: 5, left: 5),
                 child: Text(
                   "Similar Product",
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
               ),
               ProductSimilar(context).show(),

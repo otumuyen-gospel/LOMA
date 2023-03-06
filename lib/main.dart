@@ -24,8 +24,13 @@ import 'dashboard/account.dart';
 import 'dashboard/dashboard_search.dart';
 import 'dashboard/store.dart';
 import 'order_processing.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:loma/firebase_options.dart';
 
-void main() {
+void main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const Loma());
 }
 

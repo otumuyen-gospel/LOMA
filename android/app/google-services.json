@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "422044088607",
+    "project_id": "loma-4abb5",
+    "storage_bucket": "loma-4abb5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422044088607:android:5e52df34c90230f051182a",
+        "android_client_info": {
+          "package_name": "com.loma.app.loma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "422044088607-cu6ukjh5jstdq1r6t27mdvse2l4rq0g7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD69BUpyw1oCj3gEB1UsVRT4axzug_PVW8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "422044088607-cu6ukjh5jstdq1r6t27mdvse2l4rq0g7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "422044088607-icl3m5n32do57p2v7hqgeit9ov0oo82q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.loma.app.loma"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
