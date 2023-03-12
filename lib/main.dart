@@ -28,7 +28,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:loma/firebase_options.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
+    /*
+      to run your app set DefaultFireBaseOptions to the platform of choice
+      to deploy your app completely set it to currentPlatform
+    */
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const Loma());

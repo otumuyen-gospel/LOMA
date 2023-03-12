@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loma/dashboard/util.dart';
+import 'package:loma/backend/util.dart';
 
 class ProductActions {
   Util util = Util();

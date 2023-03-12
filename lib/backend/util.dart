@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -28,5 +30,15 @@ class Util {
     } else {
       return "Desktop";
     }
+  }
+
+  String simple_uuid() {
+    StringBuffer sb = StringBuffer();
+    String src =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@";
+    for (int i = 1; i <= 40; i++) {
+      sb.writeCharCode(src.codeUnitAt(Random().nextInt(src.length)));
+    }
+    return sb.toString();
   }
 }

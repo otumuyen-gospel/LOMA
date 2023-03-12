@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:loma/dashboard/filepicker.dart';
 import 'package:regexed_validator/regexed_validator.dart';
@@ -25,6 +23,7 @@ class _EditStoreState extends State<EditStore> {
   var picker = SystemFilePicker();
   Future future = Future(() => null);
   Image img = Image.asset("assets/cover.png");
+  var uploadPath = "";
   _addTag(String tag) {
     if (tagsWidget.length <= 2) {
       var chip = Padding(
@@ -232,9 +231,9 @@ class _EditStoreState extends State<EditStore> {
                                     ),
                                   );
                                 } else {
-                                  var path = snapshot.data as dynamic;
-                                  if ((path as String).isNotEmpty) {
-                                    img = Image.file(File(path));
+                                  uploadPath = snapshot.data as String;
+                                  if (uploadPath.isNotEmpty) {
+                                    img = Image.network(uploadPath);
                                   }
                                   return Container(
                                     alignment: Alignment.center,
