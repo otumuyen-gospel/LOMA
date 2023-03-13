@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Util {
@@ -40,5 +42,16 @@ class Util {
       sb.writeCharCode(src.codeUnitAt(Random().nextInt(src.length)));
     }
     return sb.toString();
+  }
+
+  Future<String> compressImage(String path) async {
+    File file = new File(path);
+    try {
+      File compressedFile = await FlutterNativeImage.compressImage(file.path,
+          quality: 100, percentage: 10);
+      return compressedFile.path; // compressed file path
+    } catch (e) {
+      return file.path; //uncompressed file path
+    }
   }
 }

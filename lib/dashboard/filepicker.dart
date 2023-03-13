@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:loma/backend/firebase_backend.dart';
+import 'package:loma/backend/util.dart';
 
 class SystemFilePicker {
   filePicker() async {
@@ -8,7 +9,9 @@ class SystemFilePicker {
     if (result == null) {
       return null;
     } else {
-      return FirebaseServices.uploadedFile(result.files.first.path!);
+      String path = await Util()
+          .compressImage(result.files.first.path!); //compress selected file
+      return FirebaseServices.uploadedFile(path);
     }
   }
 }
