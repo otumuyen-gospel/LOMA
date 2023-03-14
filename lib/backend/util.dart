@@ -30,7 +30,7 @@ class Util {
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       return "Mobile";
     } else {
-      return "Desktop";
+      return "Web";
     }
   }
 

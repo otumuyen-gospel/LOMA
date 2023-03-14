@@ -1,8 +1,12 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:loma/dashboard/filepicker.dart';
 import 'package:regexed_validator/regexed_validator.dart';
 import 'package:loma/dashboard/dashboard_drawer.dart';
 import 'package:loma/dashboard/logout.dart';
+import 'package:loma/backend/firebase_backend.dart';
+import 'package:loma/backend/util.dart';
 
 class EditStore extends StatefulWidget {
   const EditStore({super.key});
@@ -89,6 +93,37 @@ class _EditStoreState extends State<EditStore> {
 
   Future<Object> _pushPage(BuildContext context) async {
     return Navigator.popAndPushNamed(context, "/Store");
+  }
+
+  Future<String> uploadImage() async {
+    String path;
+    List data;
+    String destination;
+    String compressedPath;
+    if (Util().detectingPlatform() == "Web") {
+      data = await picker.filePickerWebAsBytes(); //pick image from system
+      destination = Util().simple_uuid() +
+          "." +
+          data[0].split(".").last; //firebase storage location
+
+      /*
+       compress file before uploading
+      */
+      return await FirebaseServices().uploadedFileAsByte(
+          destination, data[1] as Uint8List); //upload to firebase storage
+    } else {
+      path = await picker.filePicker(); //pick image from system
+      destination = Util().simple_uuid() +
+          "." +
+          path.split(".").last; //firebase storage location
+
+      /*
+       compress file before uploading
+      */
+      compressedPath = await Util().compressImage(path);
+      return await FirebaseServices().uploadedFile(
+          destination, compressedPath); //upload to firebase storage
+    }
   }
 
   @override
@@ -231,10 +266,9 @@ class _EditStoreState extends State<EditStore> {
                                     ),
                                   );
                                 } else {
+                                  //fetch from firebase
                                   uploadPath = snapshot.data as String;
-                                  if (uploadPath.isNotEmpty) {
-                                    img = Image.network(uploadPath);
-                                  }
+                                  img = Image.network(uploadPath);
                                   return Container(
                                     alignment: Alignment.center,
                                     padding: const EdgeInsets.all(5),
@@ -274,7 +308,7 @@ class _EditStoreState extends State<EditStore> {
                               ),
                               onPressed: () {
                                 setState(() {
-                                  future = picker.filePicker();
+                                  future = uploadImage();
                                 });
                               },
                               child: const Text(
